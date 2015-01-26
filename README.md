@@ -7,3 +7,15 @@ However, I plan to continue to work on it when I have time, and the source code 
 Game development website: http://50sgame.com/
 
 More information about this code: http://irrlicht.sourceforge.net/forum/viewtopic.php?f=6&t=49713&p=287989
+
+# Dependencies
+Boost v1.53 - http://sourceforge.net/projects/boost/files/boost/1.53.0/
+Bullet Physics v2.81 - http://code.google.com/p/bullet/downloads/detail?name=bullet-2.81-rev2613.zip&can=2&q=
+Irrlicht SDK v1.8.1 - https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.1/irrlicht-1.8.1.zip/download
+Lua 5.2.1 - http://softlayer-dal.dl.sourceforge.net/project/luabinaries/5.2.1/Windows%20Libraries/Dynamic/lua-5.2.1_Win32_dll11_lib.zip
+
+# Build
+This code is built using Visual Studio 2012. The output directory is set up to be ../bin/ relative to the repo location. Copy the Irrlicht and Lua DLLs into the bin/Debug/ directory.
+
+You also need to build Bullet. To do this, go to the Bullet directory, build/vs2010. Open the vs2010 solution file, and have vs2012 upgrade it for you, then just press f7.
+
