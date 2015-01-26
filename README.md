@@ -20,7 +20,7 @@ This code is built using Visual Studio 2012. The output directory is set up to b
 You also need to build Bullet. To do this, go to the Bullet directory, build/vs2010. Open the vs2010 solution file, and have vs2012 upgrade it for you, then just press f7.
 
 # Assets
-Download the assets from the following link, and put them under the client/data/ folder.
+Download the assets from the following link, and put them under the client/data/ folder (so it should be client/data/assets/...).
 
 https://drive.google.com/folderview?id=0BzUVY5zj_6bkYzlmZGdDZVJkNW8&usp=sharing
 
