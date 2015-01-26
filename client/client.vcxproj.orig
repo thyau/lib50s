@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3E3C6889-F438-40CC-B3E5-A8B15DDBB6E9}</ProjectGuid>
+    <RootNamespace>client</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\..\bin\$(Configuration)\Intermediate\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>E:\SourceCode\C++\libs\irrlicht-1.8\include\;E:\SourceCode\C++\libs\bullet-2.81-rev2613\src;E:\SourceCode\C++\libs\boost_1_53_0\;E:\SourceCode\C\lua52\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);E:\SourceCode\C++\libs\boost_1_53_0\bin.v2\libs\filesystem\build\msvc-11.0\debug\link-static\runtime-link-static\threading-multi;E:\SourceCode\C++\libs\boost_1_53_0\bin.v2\libs\system\build\msvc-11.0\debug\link-static\runtime-link-static\threading-multi;E:\SourceCode\C++\libs\irrlicht-1.8\lib\Win32-visualstudio;E:\SourceCode\C++\libs\bullet-2.81-rev2613\lib;E:\SourceCode\C\lua52</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Irrlicht.lib;BulletCollision_vs2010_debug.lib;BulletDynamics_vs2010_debug.lib;LinearMath_vs2010_debug.lib;libboost_filesystem-vc110-mt-sgd-1_53.lib;lua52.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <BuildLog>
+      <Path>$(SolutionDir)\..\bin\$(Configuration)\$(Configuration).log</Path>
+    </BuildLog>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\BaseComponent.cpp" />
+    <ClCompile Include="source\BaseGame.cpp" />
+    <ClCompile Include="source\Client.cpp" />
+    <ClCompile Include="source\ComponentMesh.cpp" />
+    <ClCompile Include="source\ComponentPhysical.cpp" />
+    <ClCompile Include="source\ComponentScript.cpp" />
+    <ClCompile Include="source\ComponentView.cpp" />
+    <ClCompile Include="source\ComponentWithSceneNode.cpp" />
+    <ClCompile Include="source\Entity.cpp" />
+    <ClCompile Include="source\EntityFactory.cpp" />
+    <ClCompile Include="source\LuaFunctionRegister.cpp" />
+    <ClCompile Include="source\LuaScript.cpp" />
+    <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\ContactScreen.cpp" />
+    <ClCompile Include="source\Scene.cpp" />
+    <ClCompile Include="source\ScriptManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BaseComponent.hpp" />
+    <ClInclude Include="include\BaseGame.hpp" />
+    <ClInclude Include="include\Client.hpp" />
+    <ClInclude Include="include\Common.hpp" />
+    <ClInclude Include="include\ComponentMesh.hpp" />
+    <ClInclude Include="include\ComponentPhysical.hpp" />
+    <ClInclude Include="include\ComponentView.hpp" />
+    <ClInclude Include="include\ComponentWithSceneNode.hpp" />
+    <ClInclude Include="include\ContactScreen.hpp" />
+    <ClInclude Include="include\CrashDumper.hpp" />
+    <ClInclude Include="include\EntityFactory.hpp" />
+    <ClInclude Include="include\EntitySignal.hpp" />
+    <ClInclude Include="include\Error.hpp" />
+    <ClInclude Include="include\Entity.hpp" />
+    <ClInclude Include="include\IComponent.hpp" />
+    <ClInclude Include="include\LuaFunctionRegister.hpp" />
+    <ClInclude Include="include\LuaScript.hpp" />
+    <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\ComponentScript.hpp" />
+    <ClInclude Include="include\ScriptManager.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

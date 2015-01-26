@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6AA617E5-F181-405D-A181-1C9289B65916}</ProjectGuid>
+    <RootNamespace>lib50s</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)\..\bin\$(Configuration)\libs50s\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\..\bin\$(Configuration)\lib\</OutDir>
+    <IntDir>$(SolutionDir)\..\bin\$(Configuration)\libs50s\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\BaseComponent.hpp" />
+    <ClInclude Include="include\BaseGeometryShader.hpp" />
+    <ClInclude Include="include\BasePixelShader.hpp" />
+    <ClInclude Include="include\BaseRenderPipeline.hpp" />
+    <ClInclude Include="include\BaseShadowMapRenderer.hpp" />
+    <ClInclude Include="include\BaseVertexShader.hpp" />
+    <ClInclude Include="include\CascadedShadowMapRenderer.hpp" />
+    <ClInclude Include="include\Common.hpp" />
+    <ClInclude Include="include\ComponentCollider.hpp" />
+    <ClInclude Include="include\ComponentFactory.hpp" />
+    <ClInclude Include="include\ComponentMesh.hpp" />
+    <ClInclude Include="include\ComponentPhysical.hpp" />
+    <ClInclude Include="include\ComponentScript.hpp" />
+    <ClInclude Include="include\ComponentSpawnData.hpp" />
+    <ClInclude Include="include\ComponentView.hpp" />
+    <ClInclude Include="include\ComponentWithSceneNode.hpp" />
+    <ClInclude Include="include\CrashDumper.hpp" />
+    <ClInclude Include="include\CubeShadowMapRenderer.hpp" />
+    <ClInclude Include="include\DeferredRenderPipeline.hpp" />
+    <ClInclude Include="include\Entity.hpp" />
+    <ClInclude Include="include\EntityFactory.hpp" />
+    <ClInclude Include="include\EntitySignal.hpp" />
+    <ClInclude Include="include\Error.hpp" />
+    <ClInclude Include="include\ForwardRenderPipeline.hpp" />
+    <ClInclude Include="include\ICameraContext.hpp" />
+    <ClInclude Include="include\IComponent.hpp" />
+    <ClInclude Include="include\IGeometryShader.hpp" />
+    <ClInclude Include="include\ILightContext.hpp" />
+    <ClInclude Include="include\IPixelShader.hpp" />
+    <ClInclude Include="include\IRenderPipeline.hpp" />
+    <ClInclude Include="include\IShader.hpp" />
+    <ClInclude Include="include\IShadowMapRenderer.hpp" />
+    <ClInclude Include="include\IVertexShader.hpp" />
+    <ClInclude Include="include\LuaFunctionRegister.hpp" />
+    <ClInclude Include="include\MaterialLibrary.hpp" />
+    <ClInclude Include="include\MaterialTypeSwitcher.hpp" />
+    <ClInclude Include="include\PIDControl.hpp" />
+    <ClInclude Include="include\PostProcessTechniques.hpp" />
+    <ClInclude Include="include\PSBoxBlur.hpp" />
+    <ClInclude Include="include\PSDepth.hpp" />
+    <ClInclude Include="include\PSDepthMoments.hpp" />
+    <ClInclude Include="include\PSDiffuse.hpp" />
+    <ClInclude Include="include\PSDistMoments.hpp" />
+    <ClInclude Include="include\PSLDirectional.hpp" />
+    <ClInclude Include="include\PSLPoint.hpp" />
+    <ClInclude Include="include\PSLSpot.hpp" />
+    <ClInclude Include="include\PSNormalMap.hpp" />
+    <ClInclude Include="include\PSNull.hpp" />
+    <ClInclude Include="include\PSSpecularMap.hpp" />
+    <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\ScriptManager.hpp" />
+    <ClInclude Include="include\ShaderCommon.hpp" />
+    <ClInclude Include="include\ShaderEffectRenderer.hpp" />
+    <ClInclude Include="include\ShaderInclude.hpp" />
+    <ClInclude Include="include\ShadowMapAllocator.hpp" />
+    <ClInclude Include="include\SpotShadowMapRenderer.hpp" />
+    <ClInclude Include="include\VSBasic.hpp" />
+    <ClInclude Include="include\VSNormal.hpp" />
+    <ClInclude Include="include\VSNull.hpp" />
+    <ClInclude Include="include\VSNormCoords.hpp" />
+    <ClInclude Include="include\VSTangent.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\BaseComponent.cpp" />
+    <ClCompile Include="source\BaseRenderPipeline.cpp" />
+    <ClCompile Include="source\BaseShadowMapRenderer.cpp" />
+    <ClCompile Include="source\CascadedShadowMapRenderer.cpp" />
+    <ClCompile Include="source\ComponentCollider.cpp" />
+    <ClCompile Include="source\ComponentFactory.cpp" />
+    <ClCompile Include="source\ComponentMesh.cpp" />
+    <ClCompile Include="source\ComponentPhysical.cpp" />
+    <ClCompile Include="source\ComponentScript.cpp" />
+    <ClCompile Include="source\ComponentSpawnData.cpp" />
+    <ClCompile Include="source\ComponentView.cpp" />
+    <ClCompile Include="source\ComponentWithSceneNode.cpp" />
+    <ClCompile Include="source\CubeShadowMapRenderer.cpp" />
+    <ClCompile Include="source\DeferredRenderPipeline.cpp" />
+    <ClCompile Include="source\Entity.cpp" />
+    <ClCompile Include="source\EntityFactory.cpp" />
+    <ClCompile Include="source\ForwardRenderPipeline.cpp" />
+    <ClCompile Include="source\LuaFunctionRegister.cpp" />
+    <ClCompile Include="source\MaterialLibrary.cpp" />
+    <ClCompile Include="source\PIDControl.cpp" />
+    <ClCompile Include="source\PSBoxBlur.cpp" />
+    <ClCompile Include="source\PSDepth.cpp" />
+    <ClCompile Include="source\PSDepthMoments.cpp" />
+    <ClCompile Include="source\PSDiffuse.cpp" />
+    <ClCompile Include="source\PSDistMoments.cpp" />
+    <ClCompile Include="source\PSLDirectional.cpp" />
+    <ClCompile Include="source\PSLPoint.cpp" />
+    <ClCompile Include="source\PSLSpot.cpp" />
+    <ClCompile Include="source\PSNormalMap.cpp" />
+    <ClCompile Include="source\PSSpecularMap.cpp" />
+    <ClCompile Include="source\Scene.cpp" />
+    <ClCompile Include="source\ScriptManager.cpp" />
+    <ClCompile Include="source\ShaderCommon.cpp" />
+    <ClCompile Include="source\ShaderEffectRenderer.cpp" />
+    <ClCompile Include="source\ShadowMapAllocator.cpp" />
+    <ClCompile Include="source\SpotShadowMapRenderer.cpp" />
+    <ClCompile Include="source\VSBasic.cpp" />
+    <ClCompile Include="source\VSNormal.cpp" />
+    <ClCompile Include="source\VSNormCoords.cpp" />
+    <ClCompile Include="source\VSTangent.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

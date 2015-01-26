@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{3E3C6889-F438-40CC-B3E5-A8B15DDBB6E9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6AA617E5-F181-405D-A181-1C9289B65916} = {6AA617E5-F181-405D-A181-1C9289B65916}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib50s", "lib50s\lib50s.vcxproj", "{6AA617E5-F181-405D-A181-1C9289B65916}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E3C6889-F438-40CC-B3E5-A8B15DDBB6E9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E3C6889-F438-40CC-B3E5-A8B15DDBB6E9}.Debug|Win32.Build.0 = Debug|Win32
+		{3E3C6889-F438-40CC-B3E5-A8B15DDBB6E9}.Release|Win32.ActiveCfg = Release|Win32
+		{3E3C6889-F438-40CC-B3E5-A8B15DDBB6E9}.Release|Win32.Build.0 = Release|Win32
+		{6AA617E5-F181-405D-A181-1C9289B65916}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6AA617E5-F181-405D-A181-1C9289B65916}.Debug|Win32.Build.0 = Debug|Win32
+		{6AA617E5-F181-405D-A181-1C9289B65916}.Release|Win32.ActiveCfg = Release|Win32
+		{6AA617E5-F181-405D-A181-1C9289B65916}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+EndGlobal
