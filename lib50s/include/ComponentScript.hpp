@@ -17,13 +17,13 @@
 #include "..\\include\\IComponent.hpp"
 #include "..\\include\\ComponentSpawnData.hpp"
 
-#include <lua.hpp>
+//#include <lua.hpp>
 
 typedef struct COMPONENT_SCRIPT_SPAWN_DATA
 {
-	lua_State* state;
+	//lua_State* state;
 
-	COMPONENT_SCRIPT_SPAWN_DATA(lua_State* state) { this->state = state; };
+	//COMPONENT_SCRIPT_SPAWN_DATA(lua_State* state) { this->state = state; };
 
 } COMPONENT_SCRIPT_SPAWN_DATA;
 
@@ -47,9 +47,9 @@ public:
 
 	inline COMPONENT_TYPE		getType				() const override { return COMPONENT_SCRIPT; }
 
-	inline lua_State*			getLuaState         () { return this->m_State; }
-	void						initializeLuaSide	();
-	void						setLuaState			(lua_State* state);
+	//inline lua_State*			getLuaState         () { return this->m_State; }
+	//void						initializeLuaSide	();
+	//void						setLuaState			(lua_State* state);
 
 	inline ComponentScript::Ptr getSharedPointer() { return shared_from_this(); }
 
@@ -74,8 +74,8 @@ protected:
 	void						moveScene			(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> newScene);
 	
 	
-	//Protected Members
-	lua_State*					m_State;
+	////Protected Members
+	//lua_State*					m_State;
 };
 
 #endif

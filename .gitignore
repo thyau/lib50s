@@ -1,0 +1,8 @@
+*.opensdf
+*.sdf
+bin/
+client/data/assets/
+client/x64/
+lib50s/x64/Debug/lib50s.tlog/CL.read.1.tlog
+lib50s/x64/Debug/lib50s.tlog/CL.write.1.tlog
+lib50s/x64/Debug/

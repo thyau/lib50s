@@ -12,6 +12,7 @@
  */
 
 #include <windows.h>
+#include <intrin.h>
 #include <string>
 #include <sstream>
 
@@ -72,14 +73,14 @@ static void throw_no_dialog(HRESULT res, std::string err, std::string filename, 
 
 #define THROW(err) { \
 	if(!throw_error(NULL, err, __FILE__, __LINE__)) { \
-		_asm { int 3 } \
+		__debugbreak(); \
 	} \
 } \
 
 #define THROW_IF_FAIL(result, err) { \
 	if(FAILED((HRESULT)result)) { \
 		if(!throw_error(res9001, err, __FILE__, __LINE__)) { \
-			_asm { int 3 } \
+			__debugbreak(); \
 		}\
 	}\
 }\

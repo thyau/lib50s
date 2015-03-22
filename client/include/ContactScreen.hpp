@@ -94,8 +94,8 @@ protected:
 
 	Scene::Ptr				m_Scene;
 	DebugScene::Ptr			m_DebugScene;
-	ScriptManager::Ptr		m_ScriptManager;
-	RegisterWrapper::Ptr    m_RegisterWrapper;
+	//ScriptManager::Ptr		m_ScriptManager;
+	//RegisterWrapper::Ptr    m_RegisterWrapper;
 	IRenderPipeline::Ptr	m_RenderPipeline;
 
 	// Test variables
