@@ -1,14 +1,21 @@
 #include "..\\include\\CascadedShadowMapRenderer.hpp"
 #include "..\\include\\PostProcessTechniques.hpp"
 
-// Testing
-#include <thread>
+#include <algorithm>
+#include <assert.h>
+#include <stack>
+#include <thread> // Testing
 
 /*
 	CascadedShadowMapRenderer.cpp
 	Copyright (c) [ORGNAME] 2014
 	Author: Timothy Yau
 */
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::scene;
+using namespace irr::video;
 
 using namespace std;
 
@@ -351,7 +358,7 @@ float CascadedShadowMapRenderer::findExtremalPoints(const std::vector<vector2df>
 		if ((vec[i].Y >= -tol) || (vec[minIdx].Y <= vec[i].Y + tol))
 			continue;
 
-		float crossingPt = (vec[minIdx].X - vec[i].X) / (vec[i].Y - min(0, vec[minIdx].Y));
+		float crossingPt = (vec[minIdx].X - vec[i].X) / (vec[i].Y - min(0.0f, vec[minIdx].Y));
 		// TODO: can avoid computePointsRange if crossingPt is less than previous crossingPt
 		float range = computePointsRange(vec, crossingPt);
 
@@ -488,7 +495,7 @@ void CascadedShadowMapRenderer::fitCameraNearFar(ISceneManager *smgr, const vect
 	};
 
 	// Depth-first traversal to find all top-level mesh nodes
-	std::stack<const ISceneNode*> nodeList;
+	stack<const ISceneNode*> nodeList;
 	nodeList.push(smgr->getRootSceneNode());
 
 	vector3df corners[8];

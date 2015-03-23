@@ -27,24 +27,24 @@ public:
 						ComponentWithSceneNode		();
 	virtual				~ComponentWithSceneNode		();
 
-	inline ISceneNode*	getNode						() const { return m_Node; }
+	inline irr::scene::ISceneNode*	getNode			() const { return m_Node; }
 
-	void				setPositionOffset			(const vector3df &offset);
-	void				setRotationOffset			(const vector3df &offset);
-	vector3df			getPositionOffset			() const;
-	vector3df			getAbsPosition				() const;
-	vector3df			getRotationOffset			() const;
+	void					setPositionOffset			(const irr::core::vector3df &offset);
+	void					setRotationOffset			(const irr::core::vector3df &offset);
+	irr::core::vector3df	getPositionOffset() const;
+	irr::core::vector3df	getAbsPosition() const;
+	irr::core::vector3df	getRotationOffset() const;
 
 protected:
 	// Protected Methods
 	virtual void		onAttach					(const std::shared_ptr<Entity> &parent) override;
 
-	virtual void		sig_RemoveChild				(ISceneNode* child) override;
+	virtual void		sig_RemoveChild				(irr::scene::ISceneNode* child) override;
 
 	// This class does not allow external agents to set the node, it
 	// only provides utility methods for the child class to use, allowing
 	// it to expose that functionality on its own terms
-	ISceneNode*			setNodeImpl					(ISceneNode* node);
+	irr::scene::ISceneNode*	setNodeImpl				(irr::scene::ISceneNode* node);
 	void				unsetNodeImpl				();
 
 	void				attachToParent				();
@@ -52,7 +52,7 @@ protected:
 
 private:
 	// Private Members
-	ISceneNode*			m_Node;
+	irr::scene::ISceneNode*	m_Node;
 };
 
 #endif

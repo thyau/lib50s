@@ -6,6 +6,8 @@
 
 #include "..\\include\\IrrlichtEventPipe.hpp"
 
+using namespace irr;
+
 IrrlichtEventPipe::IrrlichtEventPipe() :
 	m_Device(NULL)
 {

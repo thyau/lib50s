@@ -15,6 +15,9 @@
 #include <boost/signals2/shared_connection_block.hpp>
 #include <boost/bind/bind.hpp>
 
+#include "ISceneNode.h"
+#include "vector3d.h"
+
 class IComponent;
 class Scene;
 class Entity;
@@ -73,31 +76,31 @@ struct SIGNAL_COMBINER_OR
 	}
 };
 
-typedef boost::signals2::signal<void (const std::shared_ptr<IComponent>&)> AttachSignal; // Adding component
-typedef boost::signals2::signal<void (const std::shared_ptr<IComponent>&)> DetachSignal; // Removing component
+typedef boost::signals2::signal<void(const std::shared_ptr<IComponent>&)> AttachSignal; // Adding component
+typedef boost::signals2::signal<void(const std::shared_ptr<IComponent>&)> DetachSignal; // Removing component
 //typedef boost::signals2::signal<void (float)> UpdateSignal;
-typedef boost::signals2::signal<void (float)> PhysUpdateSignal;
-typedef boost::signals2::signal<void (const vector3df&)> MovedSignal;
-typedef boost::signals2::signal<void (const vector3df&)> RotatedSignal;
-typedef boost::signals2::signal<void (const std::shared_ptr<Scene>&, const std::shared_ptr<Scene>&)> SceneChangeSignal;
-typedef boost::signals2::signal<void (ISceneNode*, ISceneNode*)> ParentChangeSignal;
-typedef boost::signals2::signal<void (ISceneNode* child)> AddChildSignal; // Just before child added
-typedef boost::signals2::signal<void (ISceneNode* child)> RemoveChildSignal; // Just after child removed
-typedef boost::signals2::signal<void (ISceneNode* subtreeRoot)> SubtreeChangeSignal;
+typedef boost::signals2::signal<void(float)> PhysUpdateSignal;
+typedef boost::signals2::signal<void(const irr::core::vector3df&)> MovedSignal;
+typedef boost::signals2::signal<void(const irr::core::vector3df&)> RotatedSignal;
+typedef boost::signals2::signal<void(const std::shared_ptr<Scene>&, const std::shared_ptr<Scene>&)> SceneChangeSignal;
+typedef boost::signals2::signal<void(irr::scene::ISceneNode*, irr::scene::ISceneNode*)> ParentChangeSignal;
+typedef boost::signals2::signal<void(irr::scene::ISceneNode* child)> AddChildSignal; // Just before child added
+typedef boost::signals2::signal<void(irr::scene::ISceneNode* child)> RemoveChildSignal; // Just after child removed
+typedef boost::signals2::signal<void(irr::scene::ISceneNode* subtreeRoot)> SubtreeChangeSignal;
 //typedef boost::signals2::signal<void (u32 timeMs)> PreAnimateSignal;
 //typedef boost::signals2::signal<void (u32 timeMs)> PostAnimateSignal;
 
-typedef boost::function<void (const std::shared_ptr<IComponent>&)> AttachCallback;
-typedef boost::function<void (const std::shared_ptr<IComponent>&)> DetachCallback;
+typedef boost::function<void(const std::shared_ptr<IComponent>&)> AttachCallback;
+typedef boost::function<void(const std::shared_ptr<IComponent>&)> DetachCallback;
 //typedef boost::function<void (float)> UpdateCallback;
-typedef boost::function<void (float)> PhysUpdateCallback;
-typedef boost::function<void (const vector3df&)> MovedCallback;
-typedef boost::function<void (const vector3df&)> RotatedCallback;
-typedef boost::function<void (const std::shared_ptr<Scene>&, const std::shared_ptr<Scene>&)> SceneChangeCallback;
-typedef boost::function<void (ISceneNode* /* Old parent */, ISceneNode* /* New parent */)> ParentChangeCallback;
-typedef boost::function<void (ISceneNode* child)> AddChildCallback;
-typedef boost::function<void (ISceneNode* child)> RemoveChildCallback;
-typedef boost::function<void (ISceneNode* subtreeRoot)> SubtreeChangeCallback;
+typedef boost::function<void(float)> PhysUpdateCallback;
+typedef boost::function<void(const irr::core::vector3df&)> MovedCallback;
+typedef boost::function<void(const irr::core::vector3df&)> RotatedCallback;
+typedef boost::function<void(const std::shared_ptr<Scene>&, const std::shared_ptr<Scene>&)> SceneChangeCallback;
+typedef boost::function<void(irr::scene::ISceneNode* /* Old parent */, irr::scene::ISceneNode* /* New parent */)> ParentChangeCallback;
+typedef boost::function<void(irr::scene::ISceneNode* child)> AddChildCallback;
+typedef boost::function<void(irr::scene::ISceneNode* child)> RemoveChildCallback;
+typedef boost::function<void(irr::scene::ISceneNode* subtreeRoot)> SubtreeChangeCallback;
 //typedef boost::function<void (u32 timeMs)> PreAnimateCallback;
 //typedef boost::function<void (u32 timeMs)> PostAnimateCallback;
 

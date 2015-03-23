@@ -6,6 +6,9 @@
 
 #include "..\include\ComponentFactory.hpp"
 
+using namespace std;
+
+using namespace irr::scene;
 
 ComponentFactory::ComponentFactory(ISceneManager* mgr)
 	: m_SceneManager(mgr)

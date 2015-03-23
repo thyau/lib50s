@@ -4,9 +4,16 @@
 	Author: Jon Schiavo
 */
 
-#include <Common.hpp>
-#include <CrashDumper.hpp>
+#include <iostream>
+
+#include "Common.hpp"
+#include "CrashDumper.hpp"
+#include "Error.hpp"
+#include "WindowsConsole.hpp"
+
 #include "..\\include\\Client.hpp"
+
+using namespace std;
 
 bool init_controller(Client &Control)
 {

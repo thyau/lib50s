@@ -11,6 +11,8 @@
  * Factory-pattern for creating Component objects
  */
 
+#include <memory>
+
 #include "..\\include\\Common.hpp"
 
 #include "..\\include\\IComponent.hpp"
@@ -47,7 +49,7 @@ private:
 
 	bool m_CopySpawnData; // Whether or not to save a copy of the spawn data in created component
 
-	typedef std::map<std::string, weak_ptr<btCollisionShape>> ShapeMap;
+	typedef std::map<std::string, std::weak_ptr<btCollisionShape>> ShapeMap;
 	ShapeMap m_ShapeCache;
 };
 

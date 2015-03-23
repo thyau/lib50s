@@ -7,6 +7,10 @@
 	Author: Timothy Yau
 */
 
+using namespace irr::core;
+using namespace irr::scene;
+using namespace irr::video;
+
 CubeShadowMapRenderer::CubeShadowMapRenderer(IVideoDriver *videoDriver, MaterialLibrary &materialLib, float margin, float zNear, float zFar)
 	: BaseShadowMapRenderer(videoDriver, materialLib), m_RenderCallback(materialLib), m_Margin(margin), m_ShadowTexture(NULL)
 {

@@ -4,7 +4,15 @@
 	Author: Jon Schiavo
 */
 
+#include <utility>
+
 #include "..\\include\\Scene.hpp"
+#include "..\\include\\WindowsConsole.hpp"
+
+using namespace std;
+using namespace irr;
+using namespace irr::scene;
+using namespace irr::core;
 
 Scene::Scene()
 {
@@ -123,7 +131,7 @@ void Scene::physicsTickCallback(btDynamicsWorld* world, btScalar timestep)
 }
 
 // Adapted from http://bulletphysics.org/Bullet/phpBB3/viewtopic.php?t=8141
-btTriangleMesh* Scene::convertToBtMesh(IMesh* pMesh, const core::vector3df& scaling)
+btTriangleMesh* Scene::convertToBtMesh(IMesh* pMesh, const vector3df& scaling)
 {
 	btVector3 vertices[3];
 	u32 i,j,k,index,numVertices,numIndices;

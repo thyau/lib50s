@@ -1,5 +1,6 @@
 #include "..\\include\\BaseShadowMapRenderer.hpp"
 #include "..\\include\\ShaderInclude.hpp"
+#include "..\\include\\WindowsConsole.hpp"
 
 /*
 	BaseShadowMapRenderer.cpp
@@ -7,6 +8,10 @@
 	Author: Timothy Yau
 */
 
+using namespace std;
+
+using namespace irr::scene;
+using namespace irr::video;
 
 BaseShadowMapRenderer::ShadowCameraContext BaseShadowMapRenderer::s_CameraContext;
 PSBoxBlur::BLUR_PARAMS BaseShadowMapRenderer::s_BoxBlurParams;
@@ -109,7 +114,7 @@ BaseShadowMapRenderer::ShadowRenderCallback::ShadowRenderCallback(MaterialLibrar
 	m_NullMat = m_MaterialLib["null"];
 }
 
-void BaseShadowMapRenderer::ShadowRenderCallback::OnPreRender(core::array<ISceneNode*> &lightList)
+void BaseShadowMapRenderer::ShadowRenderCallback::OnPreRender(irr::core::array<ISceneNode*> &lightList)
 {
 }
 

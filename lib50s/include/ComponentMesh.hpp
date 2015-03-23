@@ -11,6 +11,9 @@
  * Components that represent renderable portions of the object
  */
 
+#include "IAnimatedMeshSceneNode.h"
+#include "IMeshSceneNode.h"
+
 #include "..\\include\\ComponentWithSceneNode.hpp"
 #include "..\\include\\ComponentSpawnData.hpp"
 
@@ -72,8 +75,8 @@ public:
 
 	// Need to allow only specific types of renderable scene nodes, so we overload
 	// each individually
-	ISceneNode*				setNode					(IAnimatedMeshSceneNode* node) { return this->setNodeImpl(node); }
-	ISceneNode*				setNode					(IMeshSceneNode* node) { return this->setNodeImpl(node); }
+	irr::scene::ISceneNode*	setNode					(irr::scene::IAnimatedMeshSceneNode* node) { return this->setNodeImpl(node); }
+	irr::scene::ISceneNode*	setNode					(irr::scene::IMeshSceneNode* node) { return this->setNodeImpl(node); }
 
 	class SpawnData : public ComponentSpawnData
 	{
@@ -82,8 +85,8 @@ public:
 
 		virtual COMPONENT_TYPE getSpawnType() const override { return COMPONENT_MESH; }
 
-		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const;
-		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0);
+		virtual void serializeAttributes(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options = 0) const;
+		virtual void deserializeAttributes(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options = 0);
 
 		// TODO attributes to reference a mesh node that's a child of the parent entity
 	};

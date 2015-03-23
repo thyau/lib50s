@@ -1,5 +1,16 @@
+#include <assert.h>
+#include <string>
+
+#include "irrTypes.h"
+
 #include "..\include\ShadowMapAllocator.hpp"
 
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::scene;
+using namespace irr::video;
 
 ShadowMapAllocator::ShadowMapAllocator(IVideoDriver *videoDriver)
 	: m_VideoDriver(videoDriver), m_ShadowFormat(ECF_G32R32F /*ECF_G16R16F*/)

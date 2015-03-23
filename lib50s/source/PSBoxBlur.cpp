@@ -7,6 +7,10 @@
 #include "..\\include\\PSBoxBlur.hpp"
 #include "..\\include\\ShaderCommon.hpp"
 
+using namespace irr;
+using namespace irr::core;
+using namespace irr::video;
+
 std::string	PSBoxBlur::buildSource()
 {
 	ostringstream o;

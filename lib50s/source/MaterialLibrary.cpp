@@ -4,8 +4,20 @@
 	Author: Timothy Yau
 */
 
+#include <sstream>
+
 #include "..\\include\\MaterialLibrary.hpp"
+#include "..\\include\\WindowsConsole.hpp"
+
 #include "EMaterialTypes.h"
+#include "EPrimitiveTypes.h"
+
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::scene;
+using namespace irr::video;
 
 MaterialLibrary::MaterialLibrary(IVideoDriver *driver)
 	: m_VideoDriver(driver)

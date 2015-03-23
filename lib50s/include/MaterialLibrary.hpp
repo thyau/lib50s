@@ -17,6 +17,11 @@
 #include <map>
 
 #include "IShaderConstantSetCallBack.h"
+#include "EMaterialTypes.h"
+#include "IGPUProgrammingServices.h"
+#include "IMaterialRendererServices.h"
+#include "IVideoDriver.h"
+#include "irrTypes.h"
 
 #include "..\\include\\Common.hpp"
 #include "..\\include\\IVertexShader.hpp"
@@ -38,27 +43,27 @@ public:
 
 		// If NULL, the default callbacks of the vertex, pixel, and geometry shaders are called sequentially
 		// If newly allocated object, user should call drop() after passing to addMaterial().
-		IShaderConstantSetCallBack *constantSetCallback;
+		irr::video::IShaderConstantSetCallBack *constantSetCallback;
 
 		std::string materialName;
 
-		E_MATERIAL_TYPE baseMaterial;
+		irr::video::E_MATERIAL_TYPE baseMaterial;
 
-		E_GPU_SHADING_LANGUAGE gpuShadingLanguage;
+		irr::video::E_GPU_SHADING_LANGUAGE gpuShadingLanguage;
 	} MATERIAL_DEFINITION;
 
-	MaterialLibrary(IVideoDriver *driver);
+	MaterialLibrary(irr::video::IVideoDriver *driver);
 	virtual ~MaterialLibrary();
 
 	// Add a material to this library, and register it with the video driver.
 	// This process also involves generating and compiling all the necessary shaders.
 	// Returns the ID of the registered material renderer. Returns -1 on failure.
-	virtual u32							addMaterial(const MATERIAL_DEFINITION &def);
+	virtual irr::u32					addMaterial(const MATERIAL_DEFINITION &def);
 
 	// Returns the ID of the registered material renderer, or -1 if not found.
-	virtual u32							getMaterialID(const std::string &name) const;
+	virtual irr::u32					getMaterialID(const std::string &name) const;
 	// Convenience function to look up material ID
-	virtual E_MATERIAL_TYPE				operator[](const std::string &name) const;
+	virtual irr::video::E_MATERIAL_TYPE	operator[](const std::string &name) const;
 
 	virtual std::vector<std::string>	getMaterialNames() const;
 
@@ -66,23 +71,23 @@ public:
 	virtual void						addIrrlichtBuiltInMaterials();
 
 protected:
-	class DefaultConstantSetCallback : public IShaderConstantSetCallBack
+	class DefaultConstantSetCallback : public irr::video::IShaderConstantSetCallBack
 	{
 	public:
 		DefaultConstantSetCallback(std::vector<IShaderConstantSetCallBack*> callbacks);
 		virtual ~DefaultConstantSetCallback();
 
-		virtual void OnSetMaterial(const SMaterial& material);
-		virtual void OnSetConstants(IMaterialRendererServices* services, s32 userData);
+		virtual void OnSetMaterial(const irr::video::SMaterial& material);
+		virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData);
 
 	protected:
 		std::vector<IShaderConstantSetCallBack*> m_Callbacks;
 	};
 
 	std::vector<MATERIAL_DEFINITION> m_MaterialDefs;
-	std::map<std::string, u32> m_MaterialIDs; // Note: May have additional entries not found in m_MaterialDefs
+	std::map<std::string, irr::u32> m_MaterialIDs; // Note: May have additional entries not found in m_MaterialDefs
 
-	IVideoDriver *m_VideoDriver;
+	irr::video::IVideoDriver *m_VideoDriver;
 
 private:
 	// I don't see any reason for copying a MaterialLibrary as that would require

@@ -7,6 +7,8 @@
 #include "..\\include\\BaseComponent.hpp"
 #include "..\\include\\Entity.hpp"
 
+using namespace std;
+
 BaseComponent::BaseComponent() 
 	: m_SpawnData(NULL)
 {

@@ -134,6 +134,7 @@
     <ClInclude Include="include\BaseRenderPipeline.hpp" />
     <ClInclude Include="include\BaseShadowMapRenderer.hpp" />
     <ClInclude Include="include\BaseVertexShader.hpp" />
+    <ClInclude Include="include\BulletCompat.hpp" />
     <ClInclude Include="include\CascadedShadowMapRenderer.hpp" />
     <ClInclude Include="include\Common.hpp" />
     <ClInclude Include="include\ComponentCollider.hpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="include\VSNull.hpp" />
     <ClInclude Include="include\VSNormCoords.hpp" />
     <ClInclude Include="include\VSTangent.hpp" />
+    <ClInclude Include="include\WindowsConsole.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\BaseComponent.cpp" />

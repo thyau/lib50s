@@ -7,6 +7,10 @@
 #include "..\\include\\ShaderCommon.hpp"
 #include "..\\include\\PSDiffuse.hpp"
 
+using namespace irr;
+using namespace irr::core;
+using namespace irr::video;
+
 using namespace shader;
 
 std::string	PSDiffuse::buildSource()

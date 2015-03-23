@@ -7,6 +7,10 @@
 	Author: Timothy Yau
 */
 
+using namespace irr::core;
+using namespace irr::video;
+using namespace irr::scene;
+
 SpotShadowMapRenderer::SpotShadowMapRenderer(IVideoDriver *videoDriver, MaterialLibrary &materialLib, float margin, float zNear, float zFar)
 	: BaseShadowMapRenderer(videoDriver, materialLib), m_RenderCallback(materialLib), m_Margin(margin), m_ZNear(zNear), m_ZFar(zFar), m_OuterAngle(-1), m_ShadowTexture(NULL)
 {

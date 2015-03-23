@@ -4,7 +4,13 @@
 	Author: Timothy Yau
 */
 
+#include <utility>
+
 #include "..\\include\\ShaderEffectRenderer.hpp"
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::video;
 
 ShaderEffectRenderer::ShaderEffectRenderer(IVideoDriver *driver)
 	: m_VideoDriver(NULL), m_TexIn(NULL), m_TexOut(NULL), m_ViewportIn(0, 0, -1, -1), m_ViewportOut(0, 0, -1, -1),

@@ -27,13 +27,13 @@ class PSSpecularMap : public PSNormalMap
 {
 public:
 	virtual std::string	buildSource() override;
-	virtual IShaderConstantSetCallBack* getDefaultCallbackObject() override;
+	virtual irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override;
 
 protected:
 	class Callback : public PSNormalMap::Callback
 	{
 	public:
-		virtual void OnSetConstants(IMaterialRendererServices* services, s32 userData) override;
+		virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) override;
 	};
 };
 

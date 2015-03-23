@@ -45,33 +45,33 @@ public:
 	typedef std::weak_ptr<IComponent> wPtr;
 
 	// Public Methods
-	virtual inline bool allowMultiple() const PURE;
-	virtual inline COMPONENT_TYPE getType() const PURE;
+	virtual inline bool allowMultiple() const = 0;
+	virtual inline COMPONENT_TYPE getType() const = 0;
 
-	virtual void setNext(const IComponent::Ptr& n) PURE;
-	virtual void setPrevious(const IComponent::Ptr& p) PURE;
-	virtual inline IComponent::Ptr& getNext() PURE;
-	virtual inline IComponent::Ptr& getPrevious() PURE;
-	virtual void dropAllSiblings() PURE;
+	virtual void setNext(const IComponent::Ptr& n) = 0;
+	virtual void setPrevious(const IComponent::Ptr& p) = 0;
+	virtual inline IComponent::Ptr& getNext() = 0;
+	virtual inline IComponent::Ptr& getPrevious() = 0;
+	virtual void dropAllSiblings() = 0;
 
-	virtual void update(float delta) PURE;
+	virtual void update(float delta) = 0;
 
 	// Signal Handlers
-	virtual void sig_AttachOther(const IComponent::Ptr &other) PURE;
-	virtual void sig_DetachOther(const IComponent::Ptr &other) PURE;
-	//virtual void sig_Update(float delta) PURE;
-	virtual void sig_PhysUpdate(float delta) PURE;
-	virtual void sig_Moved(const vector3df& pos ) PURE;
-	virtual void sig_Rotated(const vector3df& rot ) PURE;
-	virtual void sig_SceneChange(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> &newScene) PURE;
-	virtual void sig_ParentChange(const std::shared_ptr<Entity> &oldParent, const std::shared_ptr<Entity> &newParent) PURE;
-	virtual void sig_AddChild(ISceneNode* child) PURE;
-	virtual void sig_RemoveChild(ISceneNode* child) PURE;
+	virtual void sig_AttachOther(const IComponent::Ptr &other) = 0;
+	virtual void sig_DetachOther(const IComponent::Ptr &other) = 0;
+	//virtual void sig_Update(float delta) = 0;
+	virtual void sig_PhysUpdate(float delta) = 0;
+	virtual void sig_Moved(const irr::core::vector3df& pos ) = 0;
+	virtual void sig_Rotated(const irr::core::vector3df& rot) = 0;
+	virtual void sig_SceneChange(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> &newScene) = 0;
+	virtual void sig_ParentChange(const std::shared_ptr<Entity> &oldParent, const std::shared_ptr<Entity> &newParent) = 0;
+	virtual void sig_AddChild(irr::scene::ISceneNode* child) = 0;
+	virtual void sig_RemoveChild(irr::scene::ISceneNode* child) = 0;
 
 protected:
 	// Protected Methods
-	virtual void onAttach(const std::shared_ptr<Entity> &parent) PURE;
-	virtual void onDetach(const std::shared_ptr<Entity> &parent) PURE;
+	virtual void onAttach(const std::shared_ptr<Entity> &parent) = 0;
+	virtual void onDetach(const std::shared_ptr<Entity> &parent) = 0;
 };
 
 #endif

@@ -13,6 +13,8 @@
  * with objects in another
  */
 
+#include "IMesh.h"
+
 #include "..\\include\\Entity.hpp"
 
 /******************************************************
@@ -39,14 +41,14 @@ public:
 	inline btDynamicsWorld*				getDynamicsWorld			() const { return m_World; }
 
 	bool						addEntity				(const Entity::Ptr &e);
-	bool						addEntity				(ISceneNode *e);
+	bool						addEntity				(irr::scene::ISceneNode *e);
 	Entity::Ptr					getEntity				(long serialNum);
 	bool						removeEntity			(long serialNum);
 	void						removeAllEntities		(void);
 
 	void						updateAll				(float delta);
 
-	static btTriangleMesh* convertToBtMesh(IMesh* pMesh, const vector3df& scaling);
+	static btTriangleMesh* convertToBtMesh(irr::scene::IMesh* pMesh, const irr::core::vector3df& scaling);
 
 protected:
 	void						processPhysicsUpdate	(float timestep);

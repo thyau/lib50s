@@ -11,6 +11,11 @@
  * The physics rigid body of an object
  */
 
+#include "btBulletCollisionCommon.h"
+#include "btBulletDynamicsCommon.h"
+
+#include "IAttributes.h"
+
 #include "..\\include\\BaseComponent.hpp"
 #include "..\\include\\ComponentSpawnData.hpp"
 
@@ -45,10 +50,10 @@ public:
 	void							setEnabled			(bool isEnabled);
 
 	virtual void					update				(float delta) override;
-	virtual void					postAnimate			(u32 timeMs);
+	virtual void					postAnimate			(irr::u32 timeMs);
 
-	virtual void					sig_Moved			(const vector3df& pos) override;
-	virtual void					sig_Rotated			(const vector3df& rot) override;
+	virtual void					sig_Moved			(const irr::core::vector3df& pos) override;
+	virtual void					sig_Rotated			(const irr::core::vector3df& rot) override;
 	virtual void					sig_SceneChange		(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> newScene);
 	//virtual void					sig_PreAnimate		(u32 timeMs);
 
@@ -56,8 +61,8 @@ public:
 
 	// absTransform is the child node's absolute (world-coordinate) transform
 	// Returns an id for future reference to this shape in updateChildTransform() and removeChildShape().
-	virtual int						addChildShape		(const matrix4& absTransform, btCollisionShape *shape, btScalar mass);
-	virtual void					updateChildTransform(const matrix4& absTransform, int id, btScalar mass);
+	virtual int						addChildShape		(const irr::core::matrix4& absTransform, btCollisionShape *shape, btScalar mass);
+	virtual void					updateChildTransform(const irr::core::matrix4& absTransform, int id, btScalar mass);
 	virtual void					removeChildShape	(int id);
 
 	bool							isDynamic			(void) const { return (m_Body->getInvMass() != 0); }
@@ -69,8 +74,8 @@ public:
 
 		virtual COMPONENT_TYPE getSpawnType() const override { return COMPONENT_PHYSICAL; }
 
-		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const;
-		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0);
+		virtual void serializeAttributes(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options = 0) const;
+		virtual void deserializeAttributes(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options = 0);
 
 		// TODO: Collision group and mask
 		// TODO: Angular Factor
@@ -89,7 +94,7 @@ protected:
 
 	// The return value of this function is guaranteed to be meaningful in sig_PostAnimate.
 	// Otherwise you probably need to call updateAbsolutePositionRecursive() on the parent entity.
-	const void						getInvAbsTransform	(matrix4 &inverse);
+	const void						getInvAbsTransform	(irr::core::matrix4 &inverse);
 
 	//// Protected so that user can't arbitrarily remove other Entities' child shapes
 	//virtual void					clearChildShapes();

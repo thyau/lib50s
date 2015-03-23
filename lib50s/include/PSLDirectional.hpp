@@ -24,7 +24,7 @@
 // The compiled shader will support up to this number of shadow map cascades.
 // Any cascades beyond this number will not be rendered.
 // Increasing this number will also increase the amount of memory used for shader uniforms
-#define LIGHT_DIR_MAX_SHADOW_CASCADES 4
+#define LIGHT_DIR_MAX_SHADOW_CASCADES (std::size_t)4
 
 class PSLDirectional : public BasePixelShader
 {
@@ -33,15 +33,15 @@ public:
 	PSLDirectional(ILightContext &lightContext, CascadedShadowMapRenderer *shadowRenderer);
 
 	virtual std::string	buildSource() override;
-	virtual IShaderConstantSetCallBack* getDefaultCallbackObject() override;
+	virtual irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override;
 
 protected:
 
-	class Callback : public IShaderConstantSetCallBack
+	class Callback : public irr::video::IShaderConstantSetCallBack
 	{
 	public:
 		Callback(ILightContext &lightContext, CascadedShadowMapRenderer *shadowRenderer) : m_LightContext(lightContext), m_ShadowRenderer(shadowRenderer) {}
-		virtual void OnSetConstants(IMaterialRendererServices* services, s32 userData);
+		virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData);
 
 	protected:
 		ILightContext &m_LightContext;

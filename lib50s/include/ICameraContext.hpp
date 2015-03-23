@@ -11,14 +11,17 @@
  * Interface to supply information about a camera, intended to be used in shader callbacks.
  */
 
+#include "ICameraSceneNode.h"
+#include "irrTypes.h"
+
 #include "..\\include\\Common.hpp"
 
 class ICameraContext
 {
 public:
-	virtual ICameraSceneNode* getCameraNode() PURE;
-	virtual f32 getCameraMinDist() PURE;
-	virtual f32 getCameraMaxDist() PURE;
+	virtual irr::scene::ICameraSceneNode* getCameraNode() = 0;
+	virtual irr::f32 getCameraMinDist() = 0;
+	virtual irr::f32 getCameraMaxDist() = 0;
 };
 
 #endif

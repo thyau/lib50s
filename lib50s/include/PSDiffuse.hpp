@@ -22,14 +22,14 @@ class PSDiffuse : public BasePixelShader
 {
 public:
 	virtual std::string	buildSource() override;
-	IShaderConstantSetCallBack* getDefaultCallbackObject() override;
+	irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override;
 
 protected:
-	class Callback : public IShaderConstantSetCallBack
+	class Callback : public irr::video::IShaderConstantSetCallBack
 	{
 	public:
-		virtual void OnSetMaterial(const SMaterial& material) override;
-		virtual void OnSetConstants(IMaterialRendererServices* services, s32 userData) override;
+		virtual void OnSetMaterial(const irr::video::SMaterial& material) override;
+		virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) override;
 
 	protected:
 		float m_SpecularLevel, m_SpecularPower;

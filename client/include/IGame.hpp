@@ -14,10 +14,12 @@
  * a "game" because it has a scene and processes input.
  */
 
-#include <Common.hpp>
-#include <Scene.hpp>
-#include <EntityFactory.hpp>
-#include <ComponentFactory.hpp>
+#include "IrrlichtDevice.h"
+
+#include "Common.hpp"
+#include "Scene.hpp"
+#include "EntityFactory.hpp"
+#include "ComponentFactory.hpp"
 
 /*
  * STRUCTURE: GAME_INITIALIZER
@@ -47,16 +49,16 @@ public:
 	typedef std::weak_ptr<IGame> wPtr;
 
 	// Public Methods
-	virtual RESULT				init					() PURE;
+	virtual RESULT				init					() = 0;
 
 	// Called between a video driver beginScene() and endScene(), and responsible
 	// for drawing the next frame
-	virtual void				frame					(float delta) PURE;
-	virtual void				debugFrame				(float delta) PURE;
-	virtual void				updateGUI				(float delta) PURE;
+	virtual void				frame					(float delta) = 0;
+	virtual void				debugFrame				(float delta) = 0;
+	virtual void				updateGUI				(float delta) = 0;
 
-	virtual RESULT				save					() PURE;
-	virtual RESULT				load					() PURE;
+	virtual RESULT				save					() = 0;
+	virtual RESULT				load					() = 0;
 };
 
 #endif

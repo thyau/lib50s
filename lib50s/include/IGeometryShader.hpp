@@ -19,11 +19,11 @@ public:
 	typedef std::shared_ptr<IGeometryShader> Ptr;
 	typedef std::weak_ptr<IGeometryShader> wPtr;
 
-	virtual E_GEOMETRY_SHADER_TYPE	getCompileTarget() PURE;
-	virtual E_PRIMITIVE_TYPE		getGeometryInType() PURE;
-	virtual E_PRIMITIVE_TYPE		getGeometryOutType() PURE;
+	virtual irr::video::E_GEOMETRY_SHADER_TYPE	getCompileTarget() = 0;
+	virtual irr::scene::E_PRIMITIVE_TYPE		getGeometryInType() = 0;
+	virtual irr::scene::E_PRIMITIVE_TYPE		getGeometryOutType() = 0;
 	//  Maximal number of vertices created by geometry shader. If 0, maximal number supported is assumed.
-	virtual u32						getMaxVerticesOut() PURE;
+	virtual irr::u32							getMaxVerticesOut() = 0;
 };
 
 #endif

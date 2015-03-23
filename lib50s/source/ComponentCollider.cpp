@@ -1,5 +1,11 @@
-#include "..\include\ComponentCollider.hpp"
+#include "..\\include\\ComponentCollider.hpp"
+#include "..\\include\\WindowsConsole.hpp"
 
+using namespace std;
+
+using namespace irr;
+using namespace irr::io;
+using namespace irr::scene;
 
 ComponentCollider::ComponentCollider(void)
 	:  m_Shape(shared_ptr<btCollisionShape>()), m_ChildShapeID(-1), m_CompPhysicalBody(ComponentPhysical::Ptr()), m_IsStatic(false)
@@ -42,12 +48,12 @@ void ComponentCollider::sig_SubtreeChange(ISceneNode *root)
 	reattachShape();
 }
 
-void ComponentCollider::SpawnData::serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options) const
+void ComponentCollider::SpawnData::serializeAttributes(IAttributes* out, SAttributeReadWriteOptions* options) const
 {
 	// TODO: implement
 }
 
-void ComponentCollider::SpawnData::deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options)
+void ComponentCollider::SpawnData::deserializeAttributes(IAttributes* in, SAttributeReadWriteOptions* options)
 {
 	// TODO: implement
 }

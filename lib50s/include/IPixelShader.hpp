@@ -19,7 +19,7 @@ public:
 	typedef std::shared_ptr<IPixelShader> Ptr;
 	typedef std::weak_ptr<IPixelShader> wPtr;
 
-	virtual E_PIXEL_SHADER_TYPE getCompileTarget() PURE;
+	virtual irr::video::E_PIXEL_SHADER_TYPE getCompileTarget() = 0;
 };
 
 #endif

@@ -11,7 +11,10 @@
  * A pipe through which Irrlicht pumps messages, and we handle them
  */
 
-#include <Common.hpp>
+#include "IrrlichtDevice.h"
+#include "IEventReceiver.h"
+
+#include "Common.hpp"
 
 /*
  * STRUCTURE: EVENT_PIPE_POINTERS
@@ -21,7 +24,7 @@
  */
 typedef struct EVENT_PIPE_POINTERS
 {
-	IrrlichtDevice* device;
+	irr::IrrlichtDevice* device;
 } EVENT_PIPE_POINTERS;
 
 /******************************************************
@@ -29,7 +32,7 @@ typedef struct EVENT_PIPE_POINTERS
 * Purpose: Implementation of IEventReceiver
 * Notes  :
 ******************************************************/
-class IrrlichtEventPipe : public IEventReceiver
+class IrrlichtEventPipe : public irr::IEventReceiver
 {
 public:
 						IrrlichtEventPipe			();
@@ -39,11 +42,11 @@ public:
 	void				setPointers					(const EVENT_PIPE_POINTERS &pointers);
 
 	// Implemented from IEventReceiver
-	virtual bool		OnEvent						(const SEvent& e);
+	virtual bool		OnEvent						(const irr::SEvent& e);
 
 private:
 	// Private Members
-	IrrlichtDevice*		m_Device;
+	irr::IrrlichtDevice*		m_Device;
 };
 
 #endif

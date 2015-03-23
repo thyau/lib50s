@@ -46,12 +46,12 @@ public:
 	virtual void			sig_DetachOther		(const IComponent::Ptr &other) override STUB;
 	//virtual void			sig_Update			(float delta) override STUB;
 	virtual void			sig_PhysUpdate		(float delta) override STUB;
-	virtual void			sig_Moved			(const vector3df& pos ) override STUB;
-	virtual void			sig_Rotated			(const vector3df& rot ) override STUB;
+	virtual void			sig_Moved			(const irr::core::vector3df& pos ) override STUB;
+	virtual void			sig_Rotated			(const irr::core::vector3df& rot) override STUB;
 	virtual void			sig_SceneChange		(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> &newScene) override STUB;
 	virtual void			sig_ParentChange	(const std::shared_ptr<Entity> &oldParent, const std::shared_ptr<Entity> &newParent) override STUB;
-	virtual void			sig_AddChild		(ISceneNode* child) override STUB;
-	virtual void			sig_RemoveChild		(ISceneNode* child) override STUB;
+	virtual void			sig_AddChild		(irr::scene::ISceneNode* child) override STUB;
+	virtual void			sig_RemoveChild		(irr::scene::ISceneNode* child) override STUB;
 
 protected:
 	// Protected Methods

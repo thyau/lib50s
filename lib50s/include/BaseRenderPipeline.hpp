@@ -12,18 +12,22 @@
  * data members and methods.
  */
 
+#include "ISceneManager.h"
+#include "ITexture.h"
+#include "IVideoDriver.h"
+
 #include "..\\include\\IRenderPipeline.hpp"
 #include "..\\include\\MaterialLibrary.hpp"
 
 class BaseRenderPipeline : public IRenderPipeline
 {
 public:
-	BaseRenderPipeline(IVideoDriver *videoDriver);
+	BaseRenderPipeline(irr::video::IVideoDriver *videoDriver);
 	virtual ~BaseRenderPipeline(void);
 
-	virtual void	setSceneManager			(ISceneManager *sceneManager) override;
-	virtual void	setFinalRenderTarget	(ITexture *texture, bool clearBackBuffer = true, bool clearZBuffer = true) override;
-	virtual void	setFinalRenderTarget	(E_RENDER_TARGET target, bool clearBackBuffer = true, bool clearZBuffer = true) override;
+	virtual void	setSceneManager			(irr::scene::ISceneManager *sceneManager) override;
+	virtual void	setFinalRenderTarget	(irr::video::ITexture *texture, bool clearBackBuffer = true, bool clearZBuffer = true) override;
+	virtual void	setFinalRenderTarget	(irr::video::E_RENDER_TARGET target, bool clearBackBuffer = true, bool clearZBuffer = true) override;
 
 	virtual const MaterialLibrary& getMaterialLibrary () override { return m_MaterialLib; }
 
@@ -31,11 +35,11 @@ protected:
 	virtual void	doSetFinalRenderTarget(void);
 	virtual void	doSetFinalRenderTarget(bool clearBack, bool clearZ);
 
-	IVideoDriver *m_VideoDriver;
-	ISceneManager *m_SceneManager;
+	irr::video::IVideoDriver *m_VideoDriver;
+	irr::scene::ISceneManager *m_SceneManager;
 
-	E_RENDER_TARGET m_FinalRenderTargetPredef;
-	ITexture *m_FinalRenderTargetTexture;
+	irr::video::E_RENDER_TARGET m_FinalRenderTargetPredef;
+	irr::video::ITexture *m_FinalRenderTargetTexture;
 	bool m_FinalRenderClearBack, m_FinalRenderClearZ;
 
 	MaterialLibrary m_MaterialLib;

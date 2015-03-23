@@ -14,6 +14,12 @@
 #include <vector>
 #include <cfloat>
 
+#include "ITexture.h"
+#include "IVideoDriver.h"
+#include "matrix4.h"
+#include "vector2d.h"
+#include "vector3d.h"
+
 #include "..\\include\\Common.hpp"
 #include "..\\include\\BaseShadowMapRenderer.hpp"
 
@@ -25,23 +31,23 @@ public:
 	// This means that depending on the camera field of view, it may not be possible for the shadow maps
 	// to cover the view frustum to a reasonable depth. Therefore the cascade sizes should be chosen
 	// according to the field of view.
-	CascadedShadowMapRenderer(IVideoDriver *videoDriver, MaterialLibrary &materialLib, const std::vector<float> &cascadeSizes);
+	CascadedShadowMapRenderer(irr::video::IVideoDriver *videoDriver, MaterialLibrary &materialLib, const std::vector<float> &cascadeSizes);
 	virtual ~CascadedShadowMapRenderer(void);
 
 	virtual const std::vector<float>& getCascadeSizes() { return m_CascadeSizes; }
 	virtual void setCascadeSizes(const std::vector<float> &cascadeSizes);
 
-	virtual void renderShadows(ILightSceneNode *lightNode, ShadowMapAllocator &alloc) override;
+	virtual void renderShadows(irr::scene::ILightSceneNode *lightNode, ShadowMapAllocator &alloc) override;
 
 	// Only valid after a call to renderShadows().
-	virtual ITexture* getRenderedTexture() { return m_ShadowTexture; }
+	virtual irr::video::ITexture* getRenderedTexture() { return m_ShadowTexture; }
 	// Only valid after a call to renderShadows().
-	virtual const std::vector<matrix4>& getViewProjectionMatrices() { return m_ViewProjMatrices; }
+	virtual const std::vector<irr::core::matrix4>& getViewProjectionMatrices() { return m_ViewProjMatrices; }
 
 	// Get X/Y offsets for sampling from the texture
-	virtual const std::vector<vector2df>& getTexOffsets() { return m_TexOffsets; }
+	virtual const std::vector<irr::core::vector2df>& getTexOffsets() { return m_TexOffsets; }
 	// Get X/Y scales for sampling from the texture
-	virtual const std::vector<vector2df>& getTexScales() { return m_TexScales; }
+	virtual const std::vector<irr::core::vector2df>& getTexScales() { return m_TexScales; }
 
 protected:
 	// Fit orthographic projection cameras for the shadow map cascades to the active camera view frustum
@@ -49,24 +55,24 @@ protected:
 	// shadow map, corresponding to m_CascadeSizes.
 	// rotation specifies the rotation of all shadow cameras.
 	// Note that outCamPositions is still in orthographic projection space to facilitate use with fitCameraNearFar
-	virtual void fitCascadeCameras(ISceneManager *smgr, std::vector<recti> shadowMapDims, const vector3df rotation, 
-		const std::vector<float>& camSizes, std::vector<vector3df>& outCamPositions);
+	virtual void fitCascadeCameras(irr::scene::ISceneManager *smgr, std::vector<irr::core::recti> shadowMapDims, const irr::core::vector3df rotation,
+		const std::vector<float>& camSizes, std::vector<irr::core::vector3df>& outCamPositions);
 
-	virtual float findExtremalPoints(const std::vector<vector2df> &vec, float desiredRange, vector2df &outMin, vector2df &outMax);
-	virtual float computePointsRange(const std::vector<vector2df> &vec, float scale);
+	virtual float findExtremalPoints(const std::vector<irr::core::vector2df> &vec, float desiredRange, irr::core::vector2df &outMin, irr::core::vector2df &outMax);
+	virtual float computePointsRange(const std::vector<irr::core::vector2df> &vec, float scale);
 
 	// inoutCamPositions camera position X/Y should be set in the orthographic projection space (i.e. after applying rotation),
 	// and the Z coordinate will be adjusted. Then the camera positions will be rotated back into world space.
-	virtual void fitCameraNearFar(ISceneManager *smgr, const vector3df rotation, std::vector<vector3df>& inoutCamPositions, 
+	virtual void fitCameraNearFar(irr::scene::ISceneManager *smgr, const irr::core::vector3df rotation, std::vector<irr::core::vector3df>& inoutCamPositions,
 		const std::vector<float>& camSizes, std::vector<float> &outZNear, std::vector<float> &outZFar);
 
 	// Intersect a parallelogram with the axis-aligned rectangle given by (xMin,yMin), (xMax,yMax), and
 	// find the minimum and maximum z-values of all points within the intersection area.
 	// The parallelogram is defined by points pts[0..3] which are joined by edges in that order
 	virtual void parallelogramIntersectDepthRange(float xMin, float xMax, float yMin, float yMax, 
-		const vector3df (&pts)[4], float &outMinDepth, float &outMaxDepth);
+		const irr::core::vector3df(&pts)[4], float &outMinDepth, float &outMaxDepth);
 
-	static inline bool xLineIntersect(float x, float yMin, float yMax, const vector3df &p1, const vector3df &p2, float &interpZ)
+	static inline bool xLineIntersect(float x, float yMin, float yMax, const irr::core::vector3df &p1, const irr::core::vector3df &p2, float &interpZ)
 	{
 		if ((p1.X < x) != (p2.X < x))
 		{
@@ -83,7 +89,7 @@ protected:
 		return false;
 	}
 
-	static inline bool yLineIntersect(float y, float xMin, float xMax, const vector3df &p1, const vector3df &p2, float &interpZ)
+	static inline bool yLineIntersect(float y, float xMin, float xMax, const irr::core::vector3df &p1, const irr::core::vector3df &p2, float &interpZ)
 	{
 		if ((p1.Y < y) != (p2.Y < y))
 		{
@@ -102,7 +108,7 @@ protected:
 
 	// matrix4::buildProjectionMatrixOrthoLH seems wrong for OpenGL
 	// See http://www.songho.ca/opengl/gl_projectionmatrix.html
-	static inline void myMakeOrthoProj(matrix4& mat, float width, float height, float zNear, float zFar)
+	static inline void myMakeOrthoProj(irr::core::matrix4& mat, float width, float height, float zNear, float zFar)
 	{
 		mat[0] = (2/width);
 		mat[1] = 0;
@@ -132,14 +138,14 @@ protected:
 	// First cascade will be updated every two frames, 2nd cascade every four frames, 3rd every eight frames etc.
 	unsigned short m_CascadeUpdateCount;
 
-	ITexture *m_ShadowTexture; // The final shadow output texture
-	std::vector<ITexture*> m_CascadeTextures; // All the textures that we need
-	std::vector<recti> m_CascadeRegions;
-	std::vector<matrix4> m_ViewProjMatrices;
-	std::vector<matrix4> m_ShadowViewProjMatrices;
+	irr::video::ITexture *m_ShadowTexture; // The final shadow output texture
+	std::vector<irr::video::ITexture*> m_CascadeTextures; // All the textures that we need
+	std::vector<irr::core::recti> m_CascadeRegions;
+	std::vector<irr::core::matrix4> m_ViewProjMatrices;
+	std::vector<irr::core::matrix4> m_ShadowViewProjMatrices;
 
 	// For shaders to sample from the shadow map
-	std::vector<vector2df> m_TexOffsets, m_TexScales;
+	std::vector<irr::core::vector2df> m_TexOffsets, m_TexScales;
 };
 
 #endif

@@ -4,9 +4,28 @@
 	Author: Jon Schiavo
 */
 
+#include <iostream>
+#include <iomanip>
+
+#include "ISceneNodeAnimatorCameraFPS.h"
+#include "ITerrainSceneNode.h"
+#include "CDynamicMeshBuffer.h"
+#include "SMesh.h"
+
+#include "BulletCompat.hpp"
+#include "ForwardRenderPipeline.hpp"
+#include "DeferredRenderPipeline.hpp"
+#include "WindowsConsole.hpp"
+
 #include "..\\include\\ContactScreen.hpp"
-#include <ForwardRenderPipeline.hpp>
-#include <DeferredRenderPipeline.hpp>
+
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::gui;
+using namespace irr::scene;
+using namespace irr::video;
 
 ContactScreen::ContactScreen(const GAME_INITIALIZER &init) :
 	BaseGame(init), m_SpherePIDControl(100.0f, 0.0f, 0.0f, (float)PI*2, 10.0f, -10.0f), m_FlashingLight(NULL)

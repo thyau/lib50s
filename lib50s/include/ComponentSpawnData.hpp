@@ -12,6 +12,8 @@
  * to save and load components.
  */
 
+#include "IAttributes.h"
+
 #include "..\\include\\IComponent.hpp"
 
 class ComponentSpawnData
@@ -20,11 +22,11 @@ public:
 	ComponentSpawnData(void);
 	virtual ~ComponentSpawnData(void);
 
-	virtual COMPONENT_TYPE getSpawnType(void) const PURE;
+	virtual COMPONENT_TYPE getSpawnType(void) const = 0;
 
 	// These serialization functions mirror the ones from ISceneNode
-	virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const PURE;
-	virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0) PURE;
+	virtual void serializeAttributes(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options = 0) const = 0;
+	virtual void deserializeAttributes(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options = 0) = 0;
 };
 
 #endif

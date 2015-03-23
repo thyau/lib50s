@@ -1,13 +1,22 @@
+#include <assert.h>
 #include <cfloat>
 
 #include "..\\include\\DeferredRenderPipeline.hpp"
 #include "..\\include\\ShaderInclude.hpp"
+#include "..\\include\\WindowsConsole.hpp"
 
 /*
 	DeferredRenderPipeline.cpp
 	Copyright (c) [ORGNAME] 2014
 	Author: Timothy Yau
 */
+
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::scene;
+using namespace irr::video;
 
 DeferredRenderPipeline::DeferredRenderPipeline(IVideoDriver *videoDriver)
 	: BaseRenderPipeline(videoDriver), m_RenderCallback(*this), m_LightSphere(NULL), m_EffectRenderer(videoDriver),

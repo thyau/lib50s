@@ -11,14 +11,17 @@
  * Provides default implementations for some interface functions.
  */
 
+#include "IShaderConstantSetCallBack.h"
+#include "IGPUProgrammingServices.h"
+
 #include "..\\include\\ipixelshader.hpp"
 
 class BasePixelShader : public IPixelShader
 {
 public:
-	virtual IShaderConstantSetCallBack* getDefaultCallbackObject() override	{ return NULL; }
-	virtual std::string					getEntryPointName() override		{ return "main"; }
-	virtual E_PIXEL_SHADER_TYPE			getCompileTarget() override			{ return EPST_PS_3_0; }
+	virtual irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override	{ return NULL; }
+	virtual std::string								getEntryPointName() override		{ return "main"; }
+	virtual irr::video::E_PIXEL_SHADER_TYPE			getCompileTarget() override			{ return irr::video::EPST_PS_3_0; }
 };
 
 #endif

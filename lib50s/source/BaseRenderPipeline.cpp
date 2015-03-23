@@ -1,10 +1,15 @@
-#include "..\include\BaseRenderPipeline.hpp"
-
 /*
 	BaseRenderPipeline.cpp
 	Copyright (c) [ORGNAME] 2014
 	Author: Timothy Yau
 */
+
+#include <assert.h>
+
+#include "..\include\BaseRenderPipeline.hpp"
+
+using namespace irr::scene;
+using namespace irr::video;
 
 BaseRenderPipeline::BaseRenderPipeline(IVideoDriver *videoDriver) 
 	: m_VideoDriver(videoDriver), m_SceneManager(NULL),

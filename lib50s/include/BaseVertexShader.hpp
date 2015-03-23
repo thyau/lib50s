@@ -16,9 +16,9 @@
 class BaseVertexShader : public IVertexShader
 {
 public:
-	virtual IShaderConstantSetCallBack* getDefaultCallbackObject() override	{ return NULL; }
-	virtual std::string					getEntryPointName() override		{ return "main"; }
-	virtual E_VERTEX_SHADER_TYPE		getCompileTarget() override			{ return EVST_VS_3_0; }
+	virtual irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override	{ return NULL; }
+	virtual std::string								getEntryPointName() override		{ return "main"; }
+	virtual irr::video::E_VERTEX_SHADER_TYPE		getCompileTarget() override			{ return irr::video::EVST_VS_3_0; }
 };
 
 #endif

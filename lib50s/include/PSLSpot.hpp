@@ -30,15 +30,15 @@ public:
 	PSLSpot(ILightContext &lightContext, SpotShadowMapRenderer *shadowRenderer);
 
 	virtual std::string	buildSource() override;
-	virtual IShaderConstantSetCallBack* getDefaultCallbackObject() override;
+	virtual irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override;
 
 protected:
 
-	class Callback : public IShaderConstantSetCallBack
+	class Callback : public irr::video::IShaderConstantSetCallBack
 	{
 	public:
 		Callback(ILightContext &lightContext, SpotShadowMapRenderer *shadowRenderer) : m_LightContext(lightContext), m_ShadowRenderer(shadowRenderer) {}
-		virtual void OnSetConstants(IMaterialRendererServices* services, s32 userData);
+		virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData);
 
 	protected:
 		ILightContext &m_LightContext;

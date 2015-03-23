@@ -12,9 +12,17 @@
  * them with the actual scene.
  */
 
-#include <Common.hpp>
-#include <Entity.hpp>
-#include <ComponentPhysical.hpp>
+#include <memory>
+
+#include "ISceneManager.h"
+#include "ISceneNode.h"
+#include "IGeometryCreator.h"
+#include "IMeshManipulator.h"
+#include "IMeshSceneNode.h"
+
+#include "Common.hpp"
+#include "Entity.hpp"
+#include "ComponentPhysical.hpp"
 
 class DebugScene : public std::enable_shared_from_this<DebugScene>
 {
@@ -22,7 +30,7 @@ public:
 	typedef std::shared_ptr<DebugScene> Ptr;
 	typedef std::weak_ptr<DebugScene> wPtr;
 
-	DebugScene(ISceneManager *sceneMgr, ISceneManager *debugSceneMgr);
+	DebugScene(irr::scene::ISceneManager *sceneMgr, irr::scene::ISceneManager *debugSceneMgr);
 	virtual ~DebugScene(void);
 
 	// Sync debug objects with tracked nodes
@@ -31,13 +39,13 @@ public:
 	// Start tracking the given node with debug objects. If there are no more
 	// references to the node and it is about to be destroyed, tracking stops
 	// automatically.
-	void	trackNode			(ISceneNode *node); // Remember to grab()
+	void	trackNode			(irr::scene::ISceneNode *node); // Remember to grab()
 
 	// Track all nodes in the subtree
-	void	trackNodeSubtree	(ISceneNode *root);
+	void	trackNodeSubtree	(irr::scene::ISceneNode *root);
 
-	bool	stopTrackingNode	(ISceneNode *node);
-	void	stopTrackingSubtree	(ISceneNode *root);
+	bool	stopTrackingNode	(irr::scene::ISceneNode *node);
+	void	stopTrackingSubtree	(irr::scene::ISceneNode *root);
 	void	stopTrackingAll		(void);
 
 	void	setDrawBoundingBox	(bool newvalue) { m_DrawBoundingBox = newvalue; }
@@ -48,9 +56,9 @@ public:
 protected:
 	bool m_DrawBoundingBox, m_DrawPhysicsShape;
 
-	ISceneManager *m_SceneMgr, *m_DebugSceneMgr;
-	const IGeometryCreator *m_GeomCreator;
-	IMeshManipulator *m_MeshManipulator;
+	irr::scene::ISceneManager *m_SceneMgr, *m_DebugSceneMgr;
+	const irr::scene::IGeometryCreator *m_GeomCreator;
+	irr::scene::IMeshManipulator *m_MeshManipulator;
 
 	typedef struct NODE_TRACKING_INFO
 	{
@@ -65,18 +73,18 @@ protected:
 				m_BoundingBoxNode = NULL;
 			}
 
-			for (ISceneNode *node : m_PhysicsShapeNodes)
+			for (irr::scene::ISceneNode *node : m_PhysicsShapeNodes)
 				node->remove();
 
 			m_PhysicsShapeNodes.clear();
 			m_PhysicsShapes.clear();
 		}
 
-		ISceneNode *m_TrackedNode;
+		irr::scene::ISceneNode *m_TrackedNode;
 
-		IMeshSceneNode *m_BoundingBoxNode;
+		irr::scene::IMeshSceneNode *m_BoundingBoxNode;
 
-		std::vector<IMeshSceneNode*> m_PhysicsShapeNodes;
+		std::vector<irr::scene::IMeshSceneNode*> m_PhysicsShapeNodes;
 		// The shapes represented by the physics shape nodes. Used to check
 		// for changes during updateScene().
 		std::vector<btCollisionShape*> m_PhysicsShapes;
@@ -84,16 +92,16 @@ protected:
 
 	std::vector<NODE_TRACKING_INFO> trackingInfo;
 
-	IMeshSceneNode* createNodeForShape	(btCollisionShape *shape) const;
-	void			setWireframeMatProps(IMeshSceneNode *node) const;
-	void			setMeshColor		(IMeshSceneNode *node, int lightID) const;
+	irr::scene::IMeshSceneNode* createNodeForShape(btCollisionShape *shape) const;
+	void			setWireframeMatProps(irr::scene::IMeshSceneNode *node) const;
+	void			setMeshColor		(irr::scene::IMeshSceneNode *node, int lightID) const;
 
 	void		updateBoundingBoxNode	(NODE_TRACKING_INFO &info);
 	void		updatePhysicsNodes		(NODE_TRACKING_INFO &info);
 
-	void		addCameraAndLights		(ISceneManager *debugMgr);
-	void		removeCameraAndLights	(ISceneManager *debugMgr);
-	void		updateCameraAndLightPos	(ISceneManager *mgr, ISceneManager *debugMgr);
+	void		addCameraAndLights		(irr::scene::ISceneManager *debugMgr);
+	void		removeCameraAndLights	(irr::scene::ISceneManager *debugMgr);
+	void		updateCameraAndLightPos	(irr::scene::ISceneManager *mgr, irr::scene::ISceneManager *debugMgr);
 
 	enum DEBUG_SPECIAL_OBJECT_ID
 	{

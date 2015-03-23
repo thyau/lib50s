@@ -11,6 +11,8 @@
  * Component based container for Lua scripts that allows for scripts to interact with the parent entity.
  */
 
+#include <memory>
+
 #include "..\\include\\Common.hpp"
 #include "..\\include\\BaseComponent.hpp"
 #include "..\\include\\EntitySignal.hpp"
@@ -27,7 +29,7 @@ typedef struct COMPONENT_SCRIPT_SPAWN_DATA
 
 } COMPONENT_SCRIPT_SPAWN_DATA;
 
-class ComponentScript : public BaseComponent , public enable_shared_from_this<ComponentScript>
+class ComponentScript : public BaseComponent , public std::enable_shared_from_this<ComponentScript>
 {
 public:
 	typedef std::shared_ptr<ComponentScript> Ptr;
@@ -41,8 +43,8 @@ public:
 
 	virtual void				update				(float delta) override;
 
-	virtual void				sig_Moved			(const vector3df& pos) override;
-	virtual void				sig_Rotated			(const vector3df& rot) override;
+	//virtual void				sig_Moved			(const irr::core::vector3df& pos) override;
+	//virtual void				sig_Rotated			(const irr::core::vector3df& rot) override;
 	virtual void				sig_SceneChange		(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> newScene);
 
 	inline COMPONENT_TYPE		getType				() const override { return COMPONENT_SCRIPT; }
@@ -60,8 +62,8 @@ public:
 
 		virtual COMPONENT_TYPE getSpawnType() const override { return COMPONENT_SCRIPT; }
 
-		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const;
-		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0);
+		virtual void serializeAttributes(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options = 0) const;
+		virtual void deserializeAttributes(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options = 0);
 
 		// TODO attributes to load lua script
 	};

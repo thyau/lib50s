@@ -4,9 +4,18 @@
 	Author: Timothy Yau
 */
 
+#include <algorithm>
+
 #include "..\\include\\PSLDirectional.hpp"
 #include "..\\include\\ShaderCommon.hpp"
+#include "vector3d.h"
 #include "SLight.h"
+
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::video;
 
 using namespace shader;
 

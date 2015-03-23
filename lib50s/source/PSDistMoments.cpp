@@ -7,6 +7,9 @@
 #include "..\\include\\PSDistMoments.hpp"
 #include "..\\include\\ShaderCommon.hpp"
 
+using namespace irr;
+using namespace irr::video;
+
 using namespace shader;
 
 std::string	PSDistMoments::buildSource()

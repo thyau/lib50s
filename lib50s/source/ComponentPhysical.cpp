@@ -4,9 +4,16 @@
 	Author: Jon Schiavo
 */
 
+#include "..\\include\\BulletCompat.hpp"
 #include "..\\include\\ComponentPhysical.hpp"
 #include "..\\include\\Entity.hpp"
 #include "..\\include\\Scene.hpp"
+#include "..\\include\\WindowsConsole.hpp"
+
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
 
 ComponentPhysical::ComponentPhysical() :
 	BaseComponent(),

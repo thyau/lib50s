@@ -7,6 +7,9 @@
 #include "..\\include\\ComponentView.hpp"
 #include "..\\include\\Entity.hpp"
 
+using namespace irr::io;
+using namespace irr::scene;
+
 ComponentView::ComponentView() :
 	ComponentWithSceneNode()
 {
@@ -36,12 +39,12 @@ void ComponentView::onDetach(const std::shared_ptr<Entity> &parent)
 	detachFromParent();
 }
 
-void ComponentView::SpawnData::serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options) const
+void ComponentView::SpawnData::serializeAttributes(IAttributes* out, SAttributeReadWriteOptions* options) const
 {
 	//TODO implement
 }
 	
-void ComponentView::SpawnData::deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options)
+void ComponentView::SpawnData::deserializeAttributes(IAttributes* in, SAttributeReadWriteOptions* options)
 {
 	//TODO implement
 }

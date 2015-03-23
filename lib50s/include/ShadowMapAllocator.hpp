@@ -12,6 +12,11 @@
  * sizes and sub-regions as needed.
  */
 
+#include <vector>
+
+#include "IVideoDriver.h"
+#include "SViewFrustum.h"
+
 #include "..\\include\\Common.hpp"
 
 enum SHADOW_MAP_ALLOC_STRATEGY {
@@ -26,7 +31,7 @@ enum SHADOW_MAP_ALLOC_STRATEGY {
 class ShadowMapAllocator
 {
 public:
-	ShadowMapAllocator(IVideoDriver *videoDriver);
+	ShadowMapAllocator(irr::video::IVideoDriver *videoDriver);
 	virtual ~ShadowMapAllocator(void);
 
 	// Note: the same textures may be reused when called repeatedly.
@@ -36,25 +41,25 @@ public:
 	// that allocate a single texture, all regions are specified within that texture).
 	// outRegions gives pixel coordinates of each region.
 	// numRegions is the number of requested regions, see SHADOW_MAP_ALLOC_STRATEGY to see when this applies
-	virtual void allocateTextures(const std::vector<SViewFrustum> &frustums, SHADOW_MAP_ALLOC_STRATEGY strategy,
-		std::vector<ITexture*> &outTextures, std::vector<recti> &outRegions, bool allocSecondaryTexture = false,
+	virtual void allocateTextures(const std::vector<irr::scene::SViewFrustum> &frustums, SHADOW_MAP_ALLOC_STRATEGY strategy,
+		std::vector<irr::video::ITexture*> &outTextures, std::vector<irr::core::recti> &outRegions, bool allocSecondaryTexture = false,
 		unsigned int numRegions = 0);
 
 	// Convert pixel coordinates into normalized coordinates.
 	// Regions are interpreted in terms of a single texture.
-	static void calcNormalizedRegions(const ITexture* texture, const std::vector<recti> &regions, 
-		std::vector<vector2df> &outTexOffsets, std::vector<vector2df> &outTexScales);
+	static void calcNormalizedRegions(const irr::video::ITexture* texture, const std::vector<irr::core::recti> &regions, 
+		std::vector<irr::core::vector2df> &outTexOffsets, std::vector<irr::core::vector2df> &outTexScales);
 
 protected:
 
-	virtual void findSuitableTextures(const std::vector<ITexture*> &texturePool, std::vector<ITexture*> &out,
-		unsigned int numWanted, dimension2du minDim, dimension2du exactDim = dimension2du(0,0));
+	virtual void findSuitableTextures(const std::vector<irr::video::ITexture*> &texturePool, std::vector<irr::video::ITexture*> &out,
+		unsigned int numWanted, irr::core::dimension2du minDim, irr::core::dimension2du exactDim = irr::core::dimension2du(0,0));
 
-	IVideoDriver *m_VideoDriver;
-	ECOLOR_FORMAT m_ShadowFormat;
+	irr::video::IVideoDriver *m_VideoDriver;
+	irr::video::ECOLOR_FORMAT m_ShadowFormat;
 
-	ITexture *m_FlatCubeTexture, *m_FlatCubeTexture2;
-	ITexture *m_SingleViewTexture, *m_SingleViewTexture2;
+	irr::video::ITexture *m_FlatCubeTexture, *m_FlatCubeTexture2;
+	irr::video::ITexture *m_SingleViewTexture, *m_SingleViewTexture2;
 	//std::vector<ITexture*> m_CascadeTextures;
 };
 

@@ -11,7 +11,9 @@
  * Factory-pattern for creating Entity objects
  */
 
+#include "ISceneNode.h"
 #include "ISceneNodeFactory.h"
+#include "irrTypes.h"
 
 #include "..\\include\\Entity.hpp"
 
@@ -72,7 +74,7 @@
 * Purpose: Automates creation of Entity objects
 * Notes  :
 ******************************************************/
-class EntityFactory : public ISceneNodeFactory
+class EntityFactory : public irr::scene::ISceneNodeFactory
 {
 public:
 								EntityFactory					(irr::scene::ISceneManager* sm);
@@ -81,22 +83,22 @@ public:
 	// Public Methods
 
 	// adds a scene node to the scene graph based on its type id 
-	virtual ISceneNode*			addSceneNode					(ESCENE_NODE_TYPE type, ISceneNode *parent=0) override;
+	virtual irr::scene::ISceneNode*			addSceneNode(irr::scene::ESCENE_NODE_TYPE type, irr::scene::ISceneNode *parent = 0) override;
 	// adds a scene node to the scene graph based on its type name
-	virtual ISceneNode*			addSceneNode					(const c8 *typeName, ISceneNode *parent=0) override;
+	virtual irr::scene::ISceneNode*			addSceneNode(const irr::c8 *typeName, irr::scene::ISceneNode *parent = 0) override;
 	// returns amount of scene node types this factory is able to create
-	virtual u32					getCreatableSceneNodeTypeCount	() const override { return 1; }
+	virtual irr::u32						getCreatableSceneNodeTypeCount	() const override { return 1; }
 	// returns type of a createable scene node type
-	virtual ESCENE_NODE_TYPE	getCreateableSceneNodeType		(u32 idx) const override;
+	virtual irr::scene::ESCENE_NODE_TYPE	getCreateableSceneNodeType(irr::u32 idx) const override;
 	// returns type name of a createable scene node type by index
-	virtual const c8*			getCreateableSceneNodeTypeName	(u32 idx) const override;
+	virtual const irr::c8*					getCreateableSceneNodeTypeName(irr::u32 idx) const override;
 	// returns type name of a createable scene node type 
-	virtual const c8*			getCreateableSceneNodeTypeName	(ESCENE_NODE_TYPE type) const override;
+	virtual const irr::c8*					getCreateableSceneNodeTypeName(irr::scene::ESCENE_NODE_TYPE type) const override;
 	
 	// Convenience function
-	Entity::Ptr					makeEntity						(ISceneNode *parent=0);
+	Entity::Ptr					makeEntity(irr::scene::ISceneNode *parent = 0);
 	
-	inline long					GetNextSerialNum				(void)									{ return m_NextSerialNum++; }	
+	inline long					GetNextSerialNum(void)  { return m_NextSerialNum++; }	
 
 	inline irr::scene::ISceneManager* getSceneManager() { return this->m_SceneManager; }
 

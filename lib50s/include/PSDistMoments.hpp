@@ -23,17 +23,17 @@ public:
 	PSDistMoments(ICameraContext &cameraContext) : m_CameraContext(cameraContext) {	}
 
 	virtual std::string	buildSource() override;
-	IShaderConstantSetCallBack* getDefaultCallbackObject() override
+	irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject() override
 	{
 		return new Callback(m_CameraContext);
 	}
 
 protected:
-	class Callback : public IShaderConstantSetCallBack
+	class Callback : public irr::video::IShaderConstantSetCallBack
 	{
 	public:
 		Callback(ICameraContext &cameraContext) : m_CameraContext(cameraContext) {	}
-		virtual void OnSetConstants(IMaterialRendererServices* services, s32 userData) override;
+		virtual void OnSetConstants(irr::video::IMaterialRendererServices* services, irr::s32 userData) override;
 	protected:
 		ICameraContext &m_CameraContext;
 	};

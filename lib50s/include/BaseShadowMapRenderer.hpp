@@ -12,6 +12,14 @@
  * data members and methods.
  */
 
+#include "EMaterialTypes.h"
+#include "ISceneManager.h"
+#include "ISceneNode.h"
+#include "ILightManager.h"
+#include "IVideoDriver.h"
+#include "irrArray.h"
+#include "irrTypes.h"
+
 #include "..\\include\\Common.hpp"
 #include "..\\include\\IShadowMapRenderer.hpp"
 #include "..\\include\\MaterialLibrary.hpp"
@@ -23,17 +31,17 @@
 class BaseShadowMapRenderer : public IShadowMapRenderer
 {
 public:
-	BaseShadowMapRenderer(IVideoDriver *videoDriver, MaterialLibrary &materialLib);
+	BaseShadowMapRenderer(irr::video::IVideoDriver *videoDriver, MaterialLibrary &materialLib);
 	virtual ~BaseShadowMapRenderer();
 
-	virtual void setSceneManager(ISceneManager *sceneManager) override;
+	virtual void setSceneManager(irr::scene::ISceneManager *sceneManager) override;
 
 	// Mainly for shaders to access the camera parameters used to render the shadow map
 	virtual ICameraContext& getCameraContext() { return s_CameraContext; }
 
 protected:
 	// Default render callback switches materials on nodes to render their depth.
-	class ShadowRenderCallback : public ILightManager
+	class ShadowRenderCallback : public irr::scene::ILightManager
 	{
 	public:
 		// Set isOrthographic to true when rendering shadows with orthographic projection,
@@ -42,41 +50,41 @@ protected:
 		// rendered.
 		ShadowRenderCallback(MaterialLibrary &materialLib, bool isOrthographic = false);
 
-		virtual void OnPreRender(core::array<ISceneNode*> &lightList);
+		virtual void OnPreRender(irr::core::array<irr::scene::ISceneNode*> &lightList);
 		virtual void OnPostRender(void);
-		virtual void OnRenderPassPreRender(E_SCENE_NODE_RENDER_PASS renderPass);
-		virtual void OnRenderPassPostRender(E_SCENE_NODE_RENDER_PASS renderPass);
-		virtual void OnNodePreRender(ISceneNode* node);
-		virtual void OnNodePostRender(ISceneNode* node);
+		virtual void OnRenderPassPreRender(irr::scene::E_SCENE_NODE_RENDER_PASS renderPass);
+		virtual void OnRenderPassPostRender(irr::scene::E_SCENE_NODE_RENDER_PASS renderPass);
+		virtual void OnNodePreRender(irr::scene::ISceneNode* node);
+		virtual void OnNodePostRender(irr::scene::ISceneNode* node);
 
 	protected:
 		MaterialTypeSwitcher m_MatSwitcher;
-		E_SCENE_NODE_RENDER_PASS m_CurRenderPass;
+		irr::scene::E_SCENE_NODE_RENDER_PASS m_CurRenderPass;
 		MaterialLibrary &m_MaterialLib;
 		bool m_IsOrtho;
 
 		// Store the material type IDs so we don't have to look them up on every frame
-		E_MATERIAL_TYPE m_DepthMat, m_DistMat, m_NullMat;
+		irr::video::E_MATERIAL_TYPE m_DepthMat, m_DistMat, m_NullMat;
 	};
 
 	class ShadowCameraContext : public ICameraContext
 	{
 	public:
-		virtual ICameraSceneNode* getCameraNode() override { return m_CameraNode; }
-		virtual void setCameraNode(ICameraSceneNode *node);
+		virtual irr::scene::ICameraSceneNode* getCameraNode() override { return m_CameraNode; }
+		virtual void setCameraNode(irr::scene::ICameraSceneNode *node);
 		
-		virtual f32 getCameraMinDist() override { return m_CameraMinDist; }
-		virtual f32 getCameraMaxDist() override { return m_CameraMaxDist; }
+		virtual irr::f32 getCameraMinDist() override { return m_CameraMinDist; }
+		virtual irr::f32 getCameraMaxDist() override { return m_CameraMaxDist; }
 
 	protected:
-		ICameraSceneNode *m_CameraNode;
-		f32 m_CameraMinDist, m_CameraMaxDist;
+		irr::scene::ICameraSceneNode *m_CameraNode;
+		irr::f32 m_CameraMinDist, m_CameraMaxDist;
 	};
 
-	ISceneManager *m_SceneManager;
-	IVideoDriver *m_VideoDriver;
+	irr::scene::ISceneManager *m_SceneManager;
+	irr::video::IVideoDriver *m_VideoDriver;
 	MaterialLibrary &m_MaterialLib;
-	ICameraSceneNode *m_ShadowCamera;
+	irr::scene::ICameraSceneNode *m_ShadowCamera;
 
 	// The materials that we added to the MaterialLib are shared amongst all shadow renderers,
 	// so the input contexts are shared as well.

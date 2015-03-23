@@ -11,6 +11,9 @@
  * Gives an object and camera scene node
  */
 
+#include "ICameraSceneNode.h"
+#include "vector3d.h"
+
 #include "..\\include\\ComponentWithSceneNode.hpp"
 #include "..\\include\\ComponentSpawnData.hpp"
 
@@ -53,25 +56,25 @@ public:
 	inline COMPONENT_TYPE	getType					() const override { return COMPONENT_VIEW; }
 
 	// Only allow camera nodes
-	ISceneNode*				setNode					(ICameraSceneNode* cam) { return this->setNodeImpl(cam); }
+	irr::scene::ISceneNode*	setNode					(irr::scene::ICameraSceneNode* cam) { return this->setNodeImpl(cam); }
 
-	void					makeActive				(ISceneManager* smgr);
+	void					makeActive				(irr::scene::ISceneManager* smgr);
 
 	class SpawnData : public ComponentSpawnData
 	{
 	public:
-		vector3df posOffset;
-		vector3df lookAt;
+		irr::core::vector3df posOffset;
+		irr::core::vector3df lookAt;
 		bool active;
 
 		SpawnData() : posOffset(ZERO_VECTOR), lookAt(ZERO_VECTOR), active(false) { }
-		SpawnData(const vector3df &pos, const vector3df &look, bool activate)
+		SpawnData(const irr::core::vector3df &pos, const irr::core::vector3df &look, bool activate)
 			: posOffset(pos), lookAt(look), active(activate) { }
 
 		virtual COMPONENT_TYPE getSpawnType() const override { return COMPONENT_VIEW; }
 
-		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const;
-		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0);
+		virtual void serializeAttributes(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options = 0) const;
+		virtual void deserializeAttributes(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options = 0);
 	};
 
 protected:

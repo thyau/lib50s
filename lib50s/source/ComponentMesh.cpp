@@ -7,6 +7,8 @@
 #include "..\\include\\ComponentMesh.hpp"
 #include "..\\include\\Entity.hpp"
 
+using namespace irr::io;
+
 ComponentMesh::ComponentMesh() :
 	ComponentWithSceneNode()
 {
@@ -30,12 +32,12 @@ void ComponentMesh::onDetach(const std::shared_ptr<Entity> &parent)
 	detachFromParent();
 }
 
-void ComponentMesh::SpawnData::serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options) const
+void ComponentMesh::SpawnData::serializeAttributes(IAttributes* out, SAttributeReadWriteOptions* options) const
 {
 	//TODO implement
 }
 	
-void ComponentMesh::SpawnData::deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options)
+void ComponentMesh::SpawnData::deserializeAttributes(IAttributes* in, SAttributeReadWriteOptions* options)
 {
 	//TODO implement
 }

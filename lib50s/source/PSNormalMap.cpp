@@ -7,6 +7,9 @@
 #include "..\\include\\ShaderCommon.hpp"
 #include "..\\include\\PSNormalMap.hpp"
 
+using namespace irr;
+using namespace irr::video;
+
 using namespace shader;
 
 std::string	PSNormalMap::buildSource()

@@ -11,6 +11,7 @@
  * The collision shape to be assigned to a physics rigid body
  */
 
+#include <memory>
 
 #include "BaseComponent.hpp"
 #include "ComponentSpawnData.hpp"
@@ -36,9 +37,9 @@ public:
 	virtual void					onAttach			(const std::shared_ptr<Entity> &parent) override;
 	virtual void					onDetach			(const std::shared_ptr<Entity> &parent) override;
 
-	virtual void					postAnimate			(u32 timeMs);
+	virtual void					postAnimate			(irr::u32 timeMs);
 
-	virtual void					sig_SubtreeChange	(ISceneNode *root);
+	virtual void					sig_SubtreeChange	(irr::scene::ISceneNode *root);
 
 	class SpawnData : public ComponentSpawnData
 	{
@@ -47,8 +48,8 @@ public:
 
 		virtual COMPONENT_TYPE getSpawnType() const override { return COMPONENT_COLLIDER; }
 
-		virtual void serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const;
-		virtual void deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0);
+		virtual void serializeAttributes(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options = 0) const;
+		virtual void deserializeAttributes(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options = 0);
 
 		virtual btCollisionShape* createCollisionShape() const;
 
@@ -90,18 +91,18 @@ protected:
 	// Try to obtain the ComponentPhysical from the given Entity, and attach our shape to the
 	// CompoundShape there. Returns false if the Entity has no ComponentPhysical.
 	// e must be an ancestor of our parent entity.
-	bool	attachShape				(shared_ptr<Entity> e);
+	bool	attachShape				(std::shared_ptr<Entity> e);
 	void	reattachShape			(void);
 
 	//virtual void processTreeUpdate(ISceneNode* root);
 
-	shared_ptr<btCollisionShape> m_Shape;
+	std::shared_ptr<btCollisionShape> m_Shape;
 
 	// ID from attaching to a ComponentPhysical's CompoundShape.
 	// -1 means not attached
 	int m_ChildShapeID;
 	// The ComponentPhysical that represents the body our shape belongs to
-	shared_ptr<ComponentPhysical> m_CompPhysicalBody;
+	std::shared_ptr<ComponentPhysical> m_CompPhysicalBody;
 
 	bool m_IsStatic;
 	btScalar m_Mass;

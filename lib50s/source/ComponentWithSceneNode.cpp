@@ -7,6 +7,9 @@
 #include "..\\include\\ComponentWithSceneNode.hpp"
 #include "..\\include\\Entity.hpp"
 
+using namespace irr::core;
+using namespace irr::scene;
+
 ComponentWithSceneNode::ComponentWithSceneNode() :
 	m_Node(NULL)
 {

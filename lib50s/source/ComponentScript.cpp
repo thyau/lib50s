@@ -7,6 +7,9 @@
 #include "..\\include\\BaseComponent.hpp"
 #include "..\\include\\Entity.hpp"
 
+using namespace irr::core;
+using namespace irr::io;
+
 ComponentScript::ComponentScript()
 {
 
@@ -40,15 +43,15 @@ void ComponentScript::update(float delta)
 	//lua_pcall(this->m_State,2,0,NULL);
 }
 
-void ComponentScript::sig_Moved(const vector3df &pos)
-{
-
-}
-
-void ComponentScript::sig_Rotated(const vector3df &rot)
-{
-
-}
+//void ComponentScript::sig_Moved(const vector3df &pos)
+//{
+//
+//}
+//
+//void ComponentScript::sig_Rotated(const vector3df &rot)
+//{
+//
+//}
 
 void ComponentScript::sig_SceneChange(const std::shared_ptr<Scene> &oldScene, const std::shared_ptr<Scene> newScene)
 {
@@ -81,12 +84,12 @@ void ComponentScript::onDetach(const std::shared_ptr<Entity> &parent)
 
 }
 
-void ComponentScript::SpawnData::serializeAttributes(io::IAttributes* out, io::SAttributeReadWriteOptions* options) const
-{
-	//TODO implement
-}
-	
-void ComponentScript::SpawnData::deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options)
-{
-	//TODO implement
-}
+//void ComponentScript::SpawnData::serializeAttributes(IAttributes* out, SAttributeReadWriteOptions* options) const
+//{
+//	//TODO implement
+//}
+//	
+//void ComponentScript::SpawnData::deserializeAttributes(IAttributes* in, SAttributeReadWriteOptions* options)
+//{
+//	//TODO implement
+//}

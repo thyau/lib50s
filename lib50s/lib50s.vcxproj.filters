@@ -210,6 +210,12 @@
     <ClInclude Include="include\PSDepthMoments.hpp">
       <Filter>Header Files\Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="include\BulletCompat.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WindowsConsole.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\BaseRenderPipeline.cpp">

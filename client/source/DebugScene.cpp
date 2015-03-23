@@ -4,8 +4,20 @@
 	Author: Timothy Yau
 */
 
+#include "ICameraSceneNode.h"
+#include "matrix4.h"
+
+#include "BulletCompat.hpp"
+#include "WindowsConsole.hpp"
+
 #include "..\include\DebugScene.hpp"
 
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::scene;
+using namespace irr::video;
 
 DebugScene::DebugScene(ISceneManager *sceneMgr, ISceneManager *debugSceneMgr)
 	: m_DrawBoundingBox(false), m_DrawPhysicsShape(false)

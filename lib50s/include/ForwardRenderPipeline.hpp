@@ -11,12 +11,14 @@
  * The default forward-rendering pipeline.
  */
 
+#include "IVideoDriver.h"
+
 #include "baserenderpipeline.hpp"
 
 class ForwardRenderPipeline : public BaseRenderPipeline
 {
 public:
-	ForwardRenderPipeline(IVideoDriver *videoDriver);
+	ForwardRenderPipeline(irr::video::IVideoDriver *videoDriver);
 	virtual ~ForwardRenderPipeline(void);
 
 	virtual RESULT	init	() override;

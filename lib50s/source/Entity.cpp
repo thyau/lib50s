@@ -4,8 +4,16 @@
 	Author: Jon Schiavo
 */
 
+#include <stack>
+
 #include "..\\include\\Entity.hpp"
 #include "..\\include\\Scene.hpp"
+
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::scene;
 
 Entity::Entity(ISceneNode* parent, ISceneManager* mgr, long serialNum, s32 id) : 
 	ISceneNode(parent, mgr, id), m_BoundingBox(vector3df(0,0,0)), m_SerialNum(serialNum), m_HasSharedPtr(false)

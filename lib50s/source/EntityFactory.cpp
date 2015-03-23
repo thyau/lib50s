@@ -6,6 +6,9 @@
 
 #include "..\\include\\EntityFactory.hpp"
 
+using namespace irr;
+using namespace irr::scene;
+
 long EntityFactory::m_NextSerialNum = 0;
 
 EntityFactory::EntityFactory(irr::scene::ISceneManager* sm)

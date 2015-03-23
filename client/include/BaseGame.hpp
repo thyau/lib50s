@@ -13,6 +13,8 @@
  * to limit code duplication
  */
 
+#include "IGUIEnvironment.h"
+
 #include "..\\include\\IGame.hpp"
 
 /******************************************************

@@ -13,6 +13,11 @@
  * to be independent programs with separate allocated resources, if any.
  */
 
+#include <memory>
+#include <string>
+
+#include <IShaderConstantSetCallBack.h>
+
 #include "..\\include\\Common.hpp"
 
 class IShader
@@ -22,17 +27,17 @@ public:
 	typedef std::weak_ptr<IShader> wPtr;
 
 	// Generate the source code of this shader as a string
-	virtual std::string					buildSource			() PURE;
+	virtual std::string					buildSource			() = 0;
 
 	// Get a newly-allocated callback object for setting shader constants. 
 	// User is responsible for drop()'ing it.
 	// It is 'default' meaning that it sets constants independently of the other
 	// shaders (vertex, pixel, geometry, etc.) in the material.
 	// May be NULL if not needed.
-	virtual IShaderConstantSetCallBack* getDefaultCallbackObject	() PURE;
+	virtual irr::video::IShaderConstantSetCallBack* getDefaultCallbackObject	() = 0;
 
 	// Entry point name in the generated source code
-	virtual std::string					getEntryPointName	() PURE;
+	virtual std::string					getEntryPointName	() = 0;
 };
 
 #endif

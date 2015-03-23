@@ -15,6 +15,15 @@
  * events
  */
 
+#include <memory>
+
+#include "ESceneNodeTypes.h"
+#include "IAttributes.h"
+#include "ISceneNode.h"
+#include "ISceneManager.h"
+#include "irrTypes.h"
+#include "vector3d.h"
+
 #include "..\\include\\Common.hpp"
 #include "..\\include\\EntitySignal.hpp"
 #include "..\\include\\IComponent.hpp"
@@ -24,14 +33,14 @@
 class Scene;
 
 // Our custom addition to the entity-type enum
-#define ESNT_ENTITY static_cast<ESCENE_NODE_TYPE>(MAKE_IRR_ID('e','n','t','y'))
+#define ESNT_ENTITY static_cast<irr::scene::ESCENE_NODE_TYPE>(MAKE_IRR_ID('e','n','t','y'))
 
 /******************************************************
 * Class  : Entity
 * Purpose: Represents all in-world objects
 * Notes  :
 ******************************************************/
-class Entity : public ISceneNode, public std::enable_shared_from_this<Entity>
+class Entity : public irr::scene::ISceneNode, public std::enable_shared_from_this<Entity>
 {
 	friend class ComponentPhysical; // Physical component must be able to set position
 									// without triggering signal
@@ -44,7 +53,7 @@ public:
 	//typedef std::map<long, Entity::Ptr> EntChildMap;
 
 	// Constructor and Destructor
-						Entity				(ISceneNode* parent, ISceneManager* mgr, long serialNum, s32 id=-1);
+						Entity				(ISceneNode* parent, irr::scene::ISceneManager* mgr, long serialNum, irr::s32 id=-1);
 	virtual				~Entity				();
 
 	// Public Methods
@@ -68,10 +77,10 @@ public:
 	virtual void		addChild			(ISceneNode* child) override;
 	virtual bool		removeChild			(ISceneNode* child) override;
 	virtual void		removeAll			() override;
-	virtual void		setPosition			(const vector3df& newpos) override;
-	virtual void		setRotation			(const vector3df& rotation) override;
+	virtual void		setPosition			(const irr::core::vector3df& newpos) override;
+	virtual void		setRotation			(const irr::core::vector3df& rotation) override;
 	virtual void		setParent			(ISceneNode* newParent) override;
-	virtual void		OnAnimate			(u32 timeMs) override;
+	virtual void		OnAnimate			(irr::u32 timeMs) override;
 
 	// Trigger SubtreeChange events in all Entity nodes in the subtree.
 	// Should be called by the user after making structural changes to the scene node tree.
@@ -79,17 +88,17 @@ public:
 	static void			fireSubtreeUpdates	(ISceneNode* subtreeRoot);
 
 	// Implementation of abstract or other necessary functions in ISceneNode
-	virtual const aabbox3d<f32>& getBoundingBox	(void) const override;
+	virtual const irr::core::aabbox3d<irr::f32>& getBoundingBox (void) const override;
 	virtual void render						(void) override;
 	virtual void OnRegisterSceneNode		(void) override;
-	virtual void serializeAttributes		(io::IAttributes* out, io::SAttributeReadWriteOptions* options=0) const;
-	virtual void deserializeAttributes		(io::IAttributes* in, io::SAttributeReadWriteOptions* options=0);
+	virtual void serializeAttributes		(irr::io::IAttributes* out, irr::io::SAttributeReadWriteOptions* options=0) const;
+	virtual void deserializeAttributes		(irr::io::IAttributes* in, irr::io::SAttributeReadWriteOptions* options=0);
 
 	// Misc functions
 	//virtual void				setRotation		(const btQuaternion& rot);
-	virtual ESCENE_NODE_TYPE	getType			() const override { return ESNT_ENTITY; }
-	long						getSerialNum	(void) const { return m_SerialNum; }
-	virtual void				setVisible		(bool isVisible) override;
+	virtual irr::scene::ESCENE_NODE_TYPE	getType			() const override { return ESNT_ENTITY; }
+	long									getSerialNum	(void) const { return m_SerialNum; }
+	virtual void							setVisible		(bool isVisible) override;
 
 	// Compute the absolute position of this entity immediately. Note that this might be a little bit
 	// expensive and shouldn't be done at every frame, since the absolute position is already
@@ -125,8 +134,8 @@ protected:
 	// Protected Methods
 
 	// Set position/rotation without sending signals
-	virtual void		setPositionQuiet	(const vector3df& newpos);
-	virtual void		setRotationQuiet	(const vector3df& rotation);
+	virtual void		setPositionQuiet	(const irr::core::vector3df& newpos);
+	virtual void		setRotationQuiet	(const irr::core::vector3df& rotation);
 	virtual void		setRotationQuiet	(const btQuaternion& rot);
 
 	void				removeAllComponents ();
@@ -135,7 +144,7 @@ protected:
 
 	IComponent::Ptr		m_Components[COMPONENT_COUNT];
 
-	aabbox3d<f32>		m_BoundingBox;
+	irr::core::aabbox3d<irr::f32> m_BoundingBox;
 
 	// Serial number is assigned by the EntityFactory on creation. It is used to uniquely
 	// identify the Entity at runtime, but may change from one run to another, and therefore

@@ -6,6 +6,8 @@
 	Author: Timothy Yau
 */
 
+using namespace irr::video;
+
 ForwardRenderPipeline::ForwardRenderPipeline(IVideoDriver *videoDriver) : BaseRenderPipeline(videoDriver)
 {
 }

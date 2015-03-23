@@ -7,12 +7,21 @@
 #include <chrono>
 #include <thread>
 
+#include "irrlicht.h"
+
+#include "Entity.hpp"
+#include "BaseComponent.hpp"
+#include "ComponentPhysical.hpp"
+#include "ComponentMesh.hpp"
+#include "WindowsConsole.hpp"
+
 #include "..\\include\\Client.hpp"
 
-#include <Entity.hpp>
-#include <BaseComponent.hpp>
-#include <ComponentPhysical.hpp>
-#include <ComponentMesh.hpp>
+using namespace std;
+
+using namespace irr;
+using namespace irr::core;
+using namespace irr::video;
 
 Client::Client() :
 	m_Started(false),

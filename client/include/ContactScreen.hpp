@@ -13,9 +13,15 @@
  * actual "play" occurs in here
  */
 
-#include <ScriptManager.hpp>
-#include <LuaFunctionRegister.hpp>
-#include <IRenderPipeline.hpp>
+#include "IAttributes.h"
+#include "IGUIEnvironment.h"
+#include "ILightSceneNode.h"
+#include "ISceneUserDataSerializer.h"
+#include "SColor.h"
+
+#include "ScriptManager.hpp"
+#include "LuaFunctionRegister.hpp"
+#include "IRenderPipeline.hpp"
 
 #include "..\\include\\BaseGame.hpp"
 #include "..\\include\\PIDControl.hpp"
@@ -26,7 +32,7 @@
 * Purpose: The main menu loop
 * Notes  :
 ******************************************************/
-class ContactScreen : public BaseGame, public ISceneUserDataSerializer
+class ContactScreen : public BaseGame, public irr::scene::ISceneUserDataSerializer
 {
 public:
 							ContactScreen			(const GAME_INITIALIZER &init);
@@ -42,9 +48,9 @@ public:
 	RESULT					load					() override;
 
 	// Implemented methods from ISceneUserDataSerializer
-	virtual void				OnCreateNode	(ISceneNode* node);
-	virtual void				OnReadUserData	(ISceneNode* forSceneNode, io::IAttributes* userData);
-	virtual io::IAttributes*	createUserData	(ISceneNode* forSceneNode);
+	virtual void					OnCreateNode	(irr::scene::ISceneNode* node);
+	virtual void					OnReadUserData	(irr::scene::ISceneNode* forSceneNode, irr::io::IAttributes* userData);
+	virtual irr::io::IAttributes*	createUserData	(irr::scene::ISceneNode* forSceneNode);
 
 protected:
 	// Protected Members
@@ -89,7 +95,7 @@ protected:
 
 
 	// Misc functions
-	void printSubtreeTypes(ISceneNode *node, int level = 0);
+	void printSubtreeTypes(irr::scene::ISceneNode *node, int level = 0);
 
 
 	Scene::Ptr				m_Scene;
@@ -109,8 +115,8 @@ protected:
 	float m_MinBrightness;
 	float m_MaxBrightness;
 	float m_AmbientFactor;
-	SColorf m_FlashingLightColor;
-	ILightSceneNode *m_FlashingLight;
+	irr::video::SColorf m_FlashingLightColor;
+	irr::scene::ILightSceneNode *m_FlashingLight;
 };
 
 #endif
